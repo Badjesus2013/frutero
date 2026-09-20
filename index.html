@@ -15,69 +15,315 @@
 .calckeys .op{color:var(--b)}
 .calckeys .eq{background:var(--g);color:#fff;border-color:var(--g)}
 .calckeys .wide{grid-column:span 2}
+
+.row.clickable{cursor:pointer}
+.row.clickable:active{transform:scale(.995);background:var(--s2)}
+.detailhero{display:flex;gap:12px;align-items:center;margin:8px 0 14px}
+.detailhero .fruit{width:58px;height:58px;font-size:32px;border-radius:18px}
+.detailhero h3{margin:0 0 3px;font-size:20px}
+.detailhero p{margin:0;color:var(--m);font-size:11px}
+.detailgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.detailbox{border:1px solid var(--line);background:var(--s2);border-radius:14px;padding:11px}
+.detailbox small{display:block;color:var(--m);font-size:10px}
+.detailbox strong{display:block;margin-top:4px;font-size:17px}
+.margincontrol{display:grid;grid-template-columns:48px 1fr 48px;gap:8px;align-items:center}
+.margincontrol button{height:46px;border:1px solid var(--line);border-radius:13px;background:var(--s2);color:var(--t);font-size:22px;font-weight:900}
+.margincontrol input{text-align:center;font-size:18px;font-weight:900}
+.danger{width:100%;border:1px solid color-mix(in srgb,var(--r) 45%,var(--line));border-radius:14px;padding:13px;background:color-mix(in srgb,var(--r) 10%,var(--s));color:var(--r);font-weight:900;margin-top:10px}
+.archivechoices{display:grid;gap:9px;margin-top:12px}
+.archivechoices button{width:100%;border:1px solid var(--line);border-radius:14px;padding:13px;background:var(--s2);color:var(--t);font-weight:800;text-align:left}
+.archivechoices button b{display:block}
+.archivechoices button small{display:block;color:var(--m);margin-top:3px}
+.historyrow{padding:10px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px}
+.historyrow:last-child{border-bottom:0}
+.historyrow b{font-size:12px}
+.historyrow small{display:block;color:var(--m);font-size:10px;margin-top:2px}
+.weekhead{font-size:11px;font-weight:900;color:var(--m);text-transform:uppercase;letter-spacing:.04em;margin:14px 0 6px}
+.selectnote{font-size:10px;color:var(--m);margin-top:6px}
 @media(max-width:360px){.page{padding-left:12px;padding-right:12px}.quick{gap:5px}.quick button{font-size:10px}.stat strong{font-size:19px}}@media(min-width:521px){body{padding:18px}.app{border-radius:26px;min-height:calc(100dvh - 36px);box-shadow:0 25px 70px #0f172a24}.bottom{bottom:18px;border-radius:0 0 26px 26px}}
 </style></head><body>
 <div class="app"><header class="top"><button class="ib" onclick="drawer()">☰</button><div class="brand">🍎 Frutero</div><button class="ib" id="theme" onclick="theme()">🌙</button></header><main>
 <section id="home" class="page on"><div class="hello"><div><h1>Hola, Jesús</h1><p>Tu negocio, claro y bajo control 🌿</p></div><div class="date" id="date"></div></div><div class="quick"><button class="buy" onclick="openMovement('compra')"><i>🛒</i>Compra</button><button class="sale" onclick="openMovement('venta')"><i>🧾</i>Venta</button><button class="exp" onclick="openMovement('gasto')"><i>⛽</i>Gasto</button><button class="loss" onclick="openMovement('merma')"><i>🗑️</i>Merma</button></div><div class="stats"><div class="stat green"><small>Ventas hoy</small><strong id="vh">$0</strong><span id="vhc">0 ventas</span></div><div class="stat red"><small>Gastos hoy</small><strong id="gh">$0</strong><span id="ghc">0 registros</span></div><div class="stat blue"><small>Inventario (costo)</small><strong id="iv">$0</strong><span id="ipc">0 productos</span></div><div class="stat yellow"><small>Utilidad del mes</small><strong id="um">$0</strong><span>ventas − compras − gastos</span></div></div><div class="head"><h2>Productos principales</h2><button class="link" onclick="go('inventory')">Ver todos ›</button></div><div class="list" id="hp"></div></section>
 <section id="inventory" class="page"><div class="title"><h1>Inventario</h1><span class="badge">Stock actual</span></div><div class="invsum"><div class="stat blue"><small>Kilos disponibles</small><strong id="ik">0 kg</strong></div><div class="stat green"><small>Valor estimado</small><strong id="ival">$0</strong></div></div><div class="head"><h2>Productos</h2></div><div class="list" id="il"></div></section>
 <section id="movements" class="page"><div class="title"><h1>Movimientos</h1><span class="badge">Historial</span></div><div class="segment"><button id="all" class="on" onclick="filterMov('all')">Todos</button><button id="month" onclick="filterMov('month')">Este mes</button></div><div class="card" id="ml"></div></section>
-<section id="reports" class="page"><div class="head"><div class="title"><h1>Reportes</h1><span class="badge">Resumen mensual</span></div><input id="rm" type="month" onchange="render()" style="width:145px;padding:9px"></div><div class="reportgrid"><div class="reportcard green"><small>Ingresos</small><strong id="ri">$0</strong></div><div class="reportcard red"><small>Compras + gastos</small><strong id="re">$0</strong></div><div class="reportcard blue"><small>Utilidad</small><strong id="rp">$0</strong></div><div class="reportcard yellow"><small>Ventas</small><strong id="rk">0 kg</strong></div></div><div class="head"><h2>Ingresos vs gastos</h2></div><div class="chart" id="chart"></div><div class="head"><h2>Productos más vendidos</h2></div><div class="list" id="top"></div></section>
+<section id="reports" class="page"><div class="head"><div class="title"><h1>Reportes</h1><span class="badge">Resumen mensual</span></div><input id="rm" type="month" onchange="render()" style="width:145px;padding:9px"></div><div class="reportgrid"><div class="reportcard green"><small>Ingresos</small><strong id="ri">$0</strong></div><div class="reportcard red"><small>Compras + gastos</small><strong id="re">$0</strong></div><div class="reportcard blue"><small>Utilidad</small><strong id="rp">$0</strong></div><div class="reportcard yellow"><small>Ventas</small><strong id="rk">0 kg</strong></div></div><div class="head"><h2>Ingresos vs gastos</h2></div><div class="chart" id="chart"></div><div class="head"><h2>Productos más vendidos</h2></div><div class="list" id="top"></div><div class="head"><h2>Compras del mes</h2></div><div class="card" id="purchaseHistory"></div></section>
 </main><nav class="bottom"><button class="on" data-p="home" onclick="go('home')"><i>⌂</i>Inicio</button><button data-p="inventory" onclick="go('inventory')"><i>▣</i>Inventario</button><button data-p="movements" onclick="go('movements')"><i>↻</i>Movimientos</button><button data-p="reports" onclick="go('reports')"><i>▥</i>Reportes</button></nav></div>
-<div class="drawer" id="drawer" onclick="if(event.target===this)drawer()"><div class="drawerbox"><h2>🍎 Frutero</h2><button class="menu" onclick="theme()">🌙 / ☀️ Cambiar modo</button><button class="menu" onclick="openCalculator()">🧮 Calculadora</button><button class="menu" onclick="backup()">💾 Crear respaldo</button><label class="menu">📂 Restaurar respaldo<input id="bf" type="file" accept=".json" onchange="restore()" hidden></label><button class="menu" onclick="go('reports');drawer()">📊 Ver reportes</button><p style="color:var(--m);font-size:11px;margin-top:20px">Frutero v2.4 · Los datos se guardan en este dispositivo.</p></div></div>
+<div class="drawer" id="drawer" onclick="if(event.target===this)drawer()"><div class="drawerbox"><h2>🍎 Frutero</h2><button class="menu" onclick="theme()">🌙 / ☀️ Cambiar modo</button><button class="menu" onclick="openCalculator()">🧮 Calculadora</button><button class="menu" onclick="backup()">💾 Crear respaldo</button><label class="menu">📂 Restaurar respaldo<input id="bf" type="file" accept=".json" onchange="restore()" hidden></label><button class="menu" onclick="go('reports');drawer()">📊 Ver reportes</button><p style="color:var(--m);font-size:11px;margin-top:20px">Frutero v2.5 · Los datos se guardan en este dispositivo.</p></div></div>
 <div class="modal" id="modal"><div class="sheet"><div class="handle"></div><div class="sheethead"><h2 id="ft">Nuevo movimiento</h2><button class="close" onclick="closeForm()">✕</button></div><div id="fb"></div></div></div>
+
 <script>
-const KEY='fruteroDatosV1';let d=JSON.parse(localStorage.getItem(KEY))||{compras:[],ventas:[],mermas:[],gastos:[]},mf='all';const $=x=>document.getElementById(x),today=()=>new Date().toISOString().slice(0,10),month=()=>new Date().toISOString().slice(0,7),norm=s=>(s||'').trim().toLowerCase(),money=n=>'$ '+Number(n||0).toLocaleString('es-MX',{maximumFractionDigits:2}),esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+const KEY='fruteroDatosV1',THEME='fruteroTheme',$=id=>document.getElementById(id);
+const blank=()=>({compras:[],ventas:[],mermas:[],gastos:[]});
+let d=(()=>{try{return Object.assign(blank(),JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){return blank()}})();
+let mf='all';
+
+const save=()=>{localStorage.setItem(KEY,JSON.stringify(d));render()};
+const money=n=>'$ '+(+n||0).toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2});
+const today=()=>new Date().toISOString().slice(0,10);
+const month=()=>today().slice(0,7);
+const norm=s=>(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
+const esc=s=>(s??'').toString().replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+const fmtDate=s=>{if(!s)return'';let [y,m,dd]=s.split('-');return `${dd}/${m}/${y}`};
+const weekOfMonth=s=>Math.ceil((+(s||'0000-00-01').slice(8,10))/7);
+
 function fruit(n){
-n=norm(n);
-if(n.includes('manzan'))return'🍎';
-if(n.includes('plat')||n.includes('banan'))return'🍌';
-if(n.includes('naran')||n.includes('mandarin'))return'🍊';
-if(n.includes('lim'))return'🍋';
-if(n.includes('uva'))return'🍇';
-if(n.includes('sand'))return'🍉';
-if(n.includes('fresa'))return'🍓';
-if(n.includes('piñ')||n.includes('pin'))return'🍍';
-if(n.includes('pera'))return'🍐';
-if(n.includes('mango'))return'🥭';
-if(n.includes('aguac'))return'🥑';
-if(n.includes('duraz')||n.includes('melocot'))return'🍑';
-if(n.includes('cereza'))return'🍒';
-if(n.includes('kiwi'))return'🥝';
-if(n.includes('melon')||n.includes('melón'))return'🍈';
-if(n.includes('coco'))return'🥥';
-if(n.includes('arandan')||n.includes('arándan'))return'🫐';
-if(n.includes('papa')||n.includes('patata'))return'🥔';
-if(n.includes('tomat'))return'🍅';
-if(n.includes('ceboll'))return'🧅';
-if(n.includes('zanah'))return'🥕';
-if(n.includes('pepino'))return'🥒';
-if(n.includes('chile')||n.includes('jalape')||n.includes('pimiento'))return'🌶️';
-if(n.includes('elote')||n.includes('maiz')||n.includes('maíz'))return'🌽';
-if(n.includes('ajo'))return'🧄';
-if(n.includes('brocoli')||n.includes('brócoli'))return'🥦';
-if(n.includes('lechug')||n.includes('repollo'))return'🥬';
-if(n.includes('berenj'))return'🍆';
-if(n.includes('champ')||n.includes('hongo'))return'🍄';
-if(n.includes('frijol'))return'🫘';
-if(n.includes('cacahu')||n.includes('mani')||n.includes('maní'))return'🥜';
-return'📦'
+ n=norm(n);
+ if(n.includes('manzan'))return'🍎';if(n.includes('plat')||n.includes('banan'))return'🍌';
+ if(n.includes('naran')||n.includes('mandarin'))return'🍊';if(n.includes('lim'))return'🍋';
+ if(n.includes('uva'))return'🍇';if(n.includes('sand'))return'🍉';if(n.includes('fresa'))return'🍓';
+ if(n.includes('pin'))return'🍍';if(n.includes('pera'))return'🍐';if(n.includes('mango'))return'🥭';
+ if(n.includes('aguac'))return'🥑';if(n.includes('duraz')||n.includes('melocot'))return'🍑';
+ if(n.includes('cereza'))return'🍒';if(n.includes('kiwi'))return'🥝';if(n.includes('melon'))return'🍈';
+ if(n.includes('coco'))return'🥥';if(n.includes('arandan'))return'🫐';if(n.includes('papa')||n.includes('patata'))return'🥔';
+ if(n.includes('tomat'))return'🍅';if(n.includes('ceboll'))return'🧅';if(n.includes('zanah'))return'🥕';
+ if(n.includes('pepino'))return'🥒';if(n.includes('chile')||n.includes('jalape')||n.includes('pimiento'))return'🌶️';
+ if(n.includes('elote')||n.includes('maiz'))return'🌽';if(n.includes('ajo'))return'🧄';if(n.includes('brocoli'))return'🥦';
+ if(n.includes('lechug')||n.includes('repollo'))return'🥬';if(n.includes('berenj'))return'🍆';
+ if(n.includes('champ')||n.includes('hongo'))return'🍄';if(n.includes('frijol'))return'🫘';
+ if(n.includes('cacahu')||n.includes('mani'))return'🥜';return'📦'
 }
-function save(){localStorage.setItem(KEY,JSON.stringify(d));render()}function go(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('on'));$(p).classList.add('on');document.querySelectorAll('.bottom button').forEach(x=>x.classList.toggle('on',x.dataset.p===p));render();scrollTo(0,0)}function drawer(){$('drawer').classList.toggle('on')}function setTheme(t){document.documentElement.dataset.theme=t;localStorage.setItem('fruteroTheme',t);$('theme').textContent=t==='dark'?'☀️':'🌙';$('themeColor').content=t==='dark'?'#071018':'#ffffff'}function theme(){setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark')}
-function products(){let m=new Map;d.compras.forEach(x=>{let k=norm(x.producto),p=m.get(k)||{name:x.producto,buy:0,cost:0,sold:0,loss:0,margin:30,lastId:0};p.buy+=+x.kg||0;p.cost+=+x.total||0;if((+x.id||0)>=p.lastId){p.margin=x.margen===undefined?30:(+x.margen||0);p.lastId=+x.id||0}m.set(k,p)});d.ventas.forEach(x=>{let k=norm(x.producto),p=m.get(k)||{name:x.producto,buy:0,cost:0,sold:0,loss:0,margin:30,lastId:0};p.sold+=+x.kg||0;m.set(k,p)});d.mermas.forEach(x=>{let k=norm(x.producto),p=m.get(k)||{name:x.producto,buy:0,cost:0,sold:0,loss:0,margin:30,lastId:0};p.loss+=+x.kg||0;m.set(k,p)});return[...m.values()].map(p=>{let costkg=p.buy?p.cost/p.buy:0;return{...p,stock:p.buy-p.sold-p.loss,costkg,suggested:costkg*(1+(+p.margin||0)/100)}})}
-function rows(a,lim){a=lim?a.slice(0,lim):a;if(!a.length)return'<div class="empty">Aún no hay productos registrados.</div>';return a.map(p=>`<div class="row"><div class="fruit">${fruit(p.name)}</div><div><b>${esc(p.name)}</b><small>${p.stock.toFixed(2)} kg · costo ${money(p.costkg)}/kg</small></div><div class="right"><b style="color:var(--g)">${money(p.suggested)} / kg</b><small>Sugerido · ${(+p.margin||0).toFixed(0)}%</small></div></div>`).join('')}
-function home(){let t=today(),m=month(),vs=d.ventas.filter(x=>x.fecha===t),gs=d.gastos.filter(x=>x.fecha===t),ps=products(),inv=ps.reduce((a,p)=>a+Math.max(0,p.stock)*p.costkg,0),mi=d.ventas.filter(x=>x.fecha?.startsWith(m)).reduce((a,x)=>a+(+x.total||(+x.kg||0)*(+x.precio||0)),0),mc=d.compras.filter(x=>x.fecha?.startsWith(m)).reduce((a,x)=>a+(+x.total||0),0),mg=d.gastos.filter(x=>x.fecha?.startsWith(m)).reduce((a,x)=>a+(+x.monto||0),0);$('vh').textContent=money(vs.reduce((a,x)=>a+(+x.total||(+x.kg||0)*(+x.precio||0)),0));$('vhc').textContent=vs.length+' ventas';$('gh').textContent=money(gs.reduce((a,x)=>a+(+x.monto||0),0));$('ghc').textContent=gs.length+' registros';$('iv').textContent=money(inv);$('ipc').textContent=ps.filter(p=>p.stock>0).length+' productos';$('um').textContent=money(mi-mc-mg);$('hp').innerHTML=rows(ps.sort((a,b)=>b.stock-a.stock),4)}
-function inventory(){let ps=products().sort((a,b)=>b.stock-a.stock);$('ik').textContent=ps.reduce((a,p)=>a+Math.max(0,p.stock),0).toFixed(2)+' kg';$('ival').textContent=money(ps.reduce((a,p)=>a+Math.max(0,p.stock)*p.costkg,0));$('il').innerHTML=rows(ps)}
-function movs(){let a=[];d.compras.forEach(x=>a.push({ty:'Compra',dt:x.fecha,n:x.producto,a:+x.total||0,i:'🛒'}));d.ventas.forEach(x=>a.push({ty:'Venta',dt:x.fecha,n:x.producto,a:+x.total||(+x.kg||0)*(+x.precio||0),i:'🧾'}));d.gastos.forEach(x=>a.push({ty:'Gasto',dt:x.fecha,n:x.tipo+(x.descripcion?' · '+x.descripcion:''),a:+x.monto||0,i:'⛽'}));d.mermas.forEach(x=>a.push({ty:'Merma',dt:x.fecha,n:x.producto+' · '+(+x.kg||0).toFixed(2)+' kg',a:null,i:'🗑️'}));return a.sort((a,b)=>(b.dt||'').localeCompare(a.dt||''))}function filterMov(v){mf=v;$('all').classList.toggle('on',v==='all');$('month').classList.toggle('on',v==='month');movements()}function movements(){let a=movs();if(mf==='month')a=a.filter(x=>x.dt?.startsWith(month()));$('ml').innerHTML=a.length?a.map(x=>`<div class="mov"><div><b>${x.i} ${x.ty} · ${esc(x.n)}</b><small>${x.dt||''}</small></div><div class="amt">${x.a===null?'—':money(x.a)}</div></div>`).join(''):'<div class="empty">Sin movimientos.</div>'}
-function reports(){let m=$('rm').value||month(),vs=d.ventas.filter(x=>x.fecha?.startsWith(m)),cs=d.compras.filter(x=>x.fecha?.startsWith(m)),gs=d.gastos.filter(x=>x.fecha?.startsWith(m)),inc=vs.reduce((a,x)=>a+(+x.total||(+x.kg||0)*(+x.precio||0)),0),ex=cs.reduce((a,x)=>a+(+x.total||0),0)+gs.reduce((a,x)=>a+(+x.monto||0),0),kg=vs.reduce((a,x)=>a+(+x.kg||0),0);$('ri').textContent=money(inc);$('re').textContent=money(ex);$('rp').textContent=money(inc-ex);$('rk').textContent=kg.toFixed(1)+' kg';let top=new Map;vs.forEach(x=>{let k=norm(x.producto),p=top.get(k)||{name:x.producto,kg:0,total:0};p.kg+=+x.kg||0;p.total+=+x.total||(+x.kg||0)*(+x.precio||0);top.set(k,p)});let ta=[...top.values()].sort((a,b)=>b.kg-a.kg);$('top').innerHTML=ta.length?ta.slice(0,5).map(p=>`<div class="row"><div class="fruit">${fruit(p.name)}</div><div><b>${esc(p.name)}</b><small>${p.kg.toFixed(1)} kg vendidos</small></div><div class="right"><b>${money(p.total)}</b></div></div>`).join(''):'<div class="empty">Sin ventas este mes.</div>';chart(m)}
-function chart(m){let days=new Date(+m.slice(0,4),+m.slice(5,7),0).getDate(),N=5,inc=Array(N).fill(0),ex=Array(N).fill(0),bi=s=>Math.min(N-1,Math.floor(((+s.slice(8,10))-1)/(days/N)));d.ventas.filter(x=>x.fecha?.startsWith(m)).forEach(x=>inc[bi(x.fecha)]+=+x.total||(+x.kg||0)*(+x.precio||0));d.gastos.filter(x=>x.fecha?.startsWith(m)).forEach(x=>ex[bi(x.fecha)]+=+x.monto||0);d.compras.filter(x=>x.fecha?.startsWith(m)).forEach(x=>ex[bi(x.fecha)]+=+x.total||0);let max=Math.max(1,...inc,...ex),W=300,H=135,p=15,pts=a=>a.map((v,i)=>`${p+i*((W-2*p)/(N-1))},${H-p-(v/max)*(H-2*p)}`).join(' ');$('chart').innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><line x1="${p}" y1="${H-p}" x2="${W-p}" y2="${H-p}" stroke="var(--line)"/><polyline points="${pts(inc)}" fill="none" stroke="var(--g)" stroke-width="3"/><polyline points="${pts(ex)}" fill="none" stroke="var(--r)" stroke-width="3"/></svg><div style="text-align:center;font-size:10px;color:var(--m)"><b style="color:var(--g)">● Ingresos</b> &nbsp; <b style="color:var(--r)">● Compras + gastos</b></div>`}
-function openMovement(t){let title={compra:'Nueva compra',venta:'Nueva venta',gasto:'Nuevo gasto',merma:'Nueva merma'}[t],h='';$('ft').textContent=title;if(t==='compra')h=`<div class="card"><label>Producto</label><input id="fp" placeholder="Ej. Papa" oninput="purchaseCalc()"><div class="two"><div><label>Cantidad comprada (kg)</label><input id="fk" type="number" inputmode="decimal" step=".01" placeholder="30" oninput="purchaseCalc()"></div><div><label>Costo total del bulto/caja</label><input id="fval" type="number" inputmode="decimal" step=".01" placeholder="130" oninput="purchaseCalc()"></div></div><label>Porcentaje de ganancia deseado</label><input id="fmargin" type="number" inputmode="decimal" step=".01" value="30" placeholder="20, 30, 40..." oninput="purchaseCalc()"><div class="purchasecalc"><div class="equation" id="peq">Ingresa kilos y costo para calcular.</div><div class="pricegrid"><div class="pricebox"><small>Tu costo por kilo</small><strong id="pcost">$ 0.00</strong></div><div class="pricebox"><small>Precio sugerido por kilo</small><strong class="suggested" id="psuggest">$ 0.00</strong></div></div></div><label>Fecha</label><input id="fd" type="date" value="${today()}"><button class="primary" onclick="submit('compra')">Guardar compra</button></div>`;if(t==='venta')h=`<div class="card"><label>Producto</label><input id="fp" list="plist" placeholder="Buscar producto..."><datalist id="plist">${products().map(p=>`<option value="${esc(p.name)}">`).join('')}</datalist><div class="two"><div><label>Cantidad (kg)</label><input id="fk" type="number" inputmode="decimal" step=".01" oninput="saleTotal()"></div><div><label>Precio por kg</label><input id="fval" type="number" inputmode="decimal" step=".01" oninput="saleTotal()"></div></div><div class="total"><small>Total</small><strong id="st">$ 0</strong></div><label>Fecha</label><input id="fd" type="date" value="${today()}"><button class="primary" onclick="submit('venta')">Guardar venta</button></div>`;if(t==='gasto')h=`<div class="card"><label>Tipo de gasto</label><select id="fkind"><option>Gasolina</option><option>Sueldo</option><option>Comida</option><option>Renta</option><option>Transporte</option><option>Otro</option></select><label>Descripción</label><input id="fp" placeholder="Opcional"><label>Monto</label><input id="fval" type="number" inputmode="decimal" step=".01"><label>Fecha</label><input id="fd" type="date" value="${today()}"><button class="primary" onclick="submit('gasto')">Guardar gasto</button></div>`;if(t==='merma')h=`<div class="card"><label>Producto</label><input id="fp" list="plist" placeholder="Ej. Manzana"><datalist id="plist">${products().map(p=>`<option value="${esc(p.name)}">`).join('')}</datalist><label>Kilos perdidos</label><input id="fk" type="number" inputmode="decimal" step=".01"><label>Fecha</label><input id="fd" type="date" value="${today()}"><button class="primary" onclick="submit('merma')">Guardar merma</button></div>`;$('fb').innerHTML=h;$('modal').classList.add('on')}function closeForm(){$('modal').classList.remove('on')}function saleTotal(){if($('st'))$('st').textContent=money((+$('fk').value||0)*(+$('fval').value||0))}
+
+/* Convierte datos de versiones anteriores al modelo por lote sin borrar historial. */
+function migrate(){
+ d.compras.forEach(c=>{
+   if(c.id==null)c.id=Date.now()+Math.floor(Math.random()*100000);
+   if(c.margen==null)c.margen=30;
+   if(c.archivada==null)c.archivada=false;
+   if(c.costkg==null)c.costkg=(+c.kg||0)?(+c.total||0)/(+c.kg||0):0;
+   if(c.sugerido==null)c.sugerido=(+c.costkg||0)*(1+(+c.margen||0)/100);
+ });
+ /* Para movimientos antiguos sin loteId, intenta asignarlos cronológicamente al lote del mismo producto. */
+ let remaining=new Map(d.compras.map(c=>[String(c.id),+c.kg||0]));
+ let old=[
+   ...d.ventas.filter(x=>x.loteId==null).map(x=>({...x,_type:'venta'})),
+   ...d.mermas.filter(x=>x.loteId==null).map(x=>({...x,_type:'merma'}))
+ ].sort((a,b)=>((a.fecha||'')+String(a.id||0)).localeCompare((b.fecha||'')+String(b.id||0)));
+ old.forEach(x=>{
+   let candidates=d.compras.filter(c=>norm(c.producto)===norm(x.producto)&&(+remaining.get(String(c.id))||0)>0)
+     .sort((a,b)=>((a.fecha||'')+String(a.id)).localeCompare((b.fecha||'')+String(b.id)));
+   let c=candidates.find(q=>(q.fecha||'')<=(x.fecha||'9999-99-99'))||candidates[0];
+   if(c){
+     x.loteId=c.id;
+     let real=(x._type==='venta'?d.ventas:d.mermas).find(q=>q.id===x.id);
+     if(real)real.loteId=c.id;
+     remaining.set(String(c.id),(+remaining.get(String(c.id))||0)-(+x.kg||0));
+   }
+ });
+ localStorage.setItem(KEY,JSON.stringify(d));
+}
+migrate();
+
+function lotStats(c){
+ const sales=d.ventas.filter(x=>String(x.loteId)===String(c.id));
+ const losses=d.mermas.filter(x=>String(x.loteId)===String(c.id));
+ const sold=sales.reduce((a,x)=>a+(+x.kg||0),0);
+ const loss=losses.reduce((a,x)=>a+(+x.kg||0),0);
+ const stock=Math.max(0,(+c.kg||0)-sold-loss);
+ const costkg=(+c.kg||0)?(+c.total||0)/(+c.kg||0):0;
+ const margin=+c.margen||0;
+ const suggested=costkg*(1+margin/100);
+ const revenue=sales.reduce((a,x)=>a+(+x.total||(+x.kg||0)*(+x.precio||0)),0);
+ return {...c,sold,loss,stock,costkg,margin,suggested,revenue,inventoryValue:stock*costkg}
+}
+function activeLots(){return d.compras.map(lotStats).filter(x=>!x.archivada&&x.stock>0.0001).sort((a,b)=>(b.fecha||'').localeCompare(a.fecha||''))}
+function allLots(){return d.compras.map(lotStats).sort((a,b)=>((b.fecha||'')+String(b.id)).localeCompare((a.fecha||'')+String(a.id)))}
+function findLot(id){let c=d.compras.find(x=>String(x.id)===String(id));return c?lotStats(c):null}
+
+function rows(a,lim){
+ a=lim?a.slice(0,lim):a;
+ if(!a.length)return'<div class="empty">Aún no hay productos disponibles.</div>';
+ return a.map(p=>`<div class="row clickable" onclick="openProduct('${p.id}')"><div class="fruit">${fruit(p.producto)}</div><div><b>${esc(p.producto)}</b><small>${p.stock.toFixed(2)} kg · compra ${fmtDate(p.fecha)}</small></div><div class="right"><b style="color:var(--g)">${money(p.suggested)} / kg</b><small>Sugerido · ${p.margin.toFixed(0)}%</small></div></div>`).join('')
+}
+
+function home(){
+ let t=today(),m=month(),vs=d.ventas.filter(x=>x.fecha===t),gs=d.gastos.filter(x=>x.fecha===t),
+ v=vs.reduce((a,x)=>a+(+x.total||(+x.kg||0)*(+x.precio||0)),0),
+ g=gs.reduce((a,x)=>a+(+x.monto||0),0),lots=activeLots(),
+ iv=lots.reduce((a,x)=>a+x.inventoryValue,0),
+ mv=d.ventas.filter(x=>x.fecha?.startsWith(m)).reduce((a,x)=>a+(+x.total||(+x.kg||0)*(+x.precio||0)),0),
+ mc=d.compras.filter(x=>x.fecha?.startsWith(m)).reduce((a,x)=>a+(+x.total||0),0),
+ mg=d.gastos.filter(x=>x.fecha?.startsWith(m)).reduce((a,x)=>a+(+x.monto||0),0);
+ $('vh').textContent=money(v);$('vhc').textContent=vs.length+' ventas';$('gh').textContent=money(g);$('ghc').textContent=gs.length+' registros';
+ $('iv').textContent=money(iv);$('ipc').textContent=lots.length+' productos';$('um').textContent=money(mv-mc-mg);$('hp').innerHTML=rows(lots,4)
+}
+function inventory(){
+ let a=activeLots();$('ik').textContent=a.reduce((s,p)=>s+p.stock,0).toFixed(2)+' kg';
+ $('ival').textContent=money(a.reduce((s,p)=>s+p.inventoryValue,0));$('il').innerHTML=rows(a)
+}
+
+function openProduct(id){
+ let p=findLot(id);if(!p)return;
+ $('ft').textContent='Ficha del producto';
+ let related=[
+  ...d.ventas.filter(x=>String(x.loteId)===String(p.id)).map(x=>({type:'Venta',icon:'🧾',date:x.fecha,kg:+x.kg||0,amount:+x.total||(+x.kg||0)*(+x.precio||0)})),
+  ...d.mermas.filter(x=>String(x.loteId)===String(p.id)).map(x=>({type:'Merma',icon:'🗑️',date:x.fecha,kg:+x.kg||0,amount:null}))
+ ].sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+ let hist=related.length?related.map(x=>`<div class="historyrow"><div><b>${x.icon} ${x.type}</b><small>${fmtDate(x.date)} · ${x.kg.toFixed(2)} kg</small></div><b>${x.amount==null?'—':money(x.amount)}</b></div>`).join(''):'<div class="empty">Sin ventas ni mermas en esta compra.</div>';
+ $('fb').innerHTML=`<div class="detailhero"><div class="fruit">${fruit(p.producto)}</div><div><h3>${esc(p.producto)}</h3><p>Compra del ${fmtDate(p.fecha)} · Lote #${String(p.id).slice(-6)}</p></div></div>
+ <div class="detailgrid">
+  <div class="detailbox"><small>Compraste</small><strong>${(+p.kg).toFixed(2)} kg</strong></div>
+  <div class="detailbox"><small>Costo total</small><strong>${money(p.total)}</strong></div>
+  <div class="detailbox"><small>Tu costo por kg</small><strong>${money(p.costkg)}</strong></div>
+  <div class="detailbox"><small>Disponible</small><strong>${p.stock.toFixed(2)} kg</strong></div>
+  <div class="detailbox"><small>Vendido</small><strong>${p.sold.toFixed(2)} kg</strong></div>
+  <div class="detailbox"><small>Merma</small><strong>${p.loss.toFixed(2)} kg</strong></div>
+  <div class="detailbox"><small>Valor del inventario</small><strong>${money(p.inventoryValue)}</strong></div>
+  <div class="detailbox"><small>Ventas registradas</small><strong>${money(p.revenue)}</strong></div>
+ </div>
+ <div class="card"><label>Margen de ganancia de este producto</label>
+  <div class="margincontrol"><button onclick="stepMargin('${p.id}',-5)">−</button><input id="detailMargin" type="number" inputmode="decimal" step="1" value="${p.margin}" oninput="previewMargin('${p.id}')"><button onclick="stepMargin('${p.id}',5)">+</button></div>
+  <div class="total"><small>Precio sugerido por kilo</small><strong id="detailSuggested">${money(p.suggested)}</strong><span id="detailEquation" style="font-size:10px">${money(p.costkg)} × ${(1+p.margin/100).toFixed(2)}</span></div>
+  <button class="primary" onclick="saveMargin('${p.id}')">Guardar margen</button>
+ </div>
+ <div class="head"><h2>Movimientos de esta compra</h2></div><div class="card">${hist}</div>
+ <button class="danger" onclick="archiveAsk('${p.id}')">📦 Archivar producto</button>`;
+ $('modal').classList.add('on')
+}
+function previewMargin(id){
+ let p=findLot(id),m=+$('detailMargin').value||0,s=p.costkg*(1+m/100);
+ $('detailSuggested').textContent=money(s);$('detailEquation').textContent=`${money(p.costkg)} × ${(1+m/100).toFixed(2)}`
+}
+function stepMargin(id,n){let e=$('detailMargin');e.value=Math.max(0,(+e.value||0)+n);previewMargin(id)}
+function saveMargin(id){
+ let c=d.compras.find(x=>String(x.id)===String(id));if(!c)return;
+ c.margen=Math.max(0,+$('detailMargin').value||0);c.costkg=(+c.kg||0)?(+c.total||0)/(+c.kg||0):0;c.sugerido=c.costkg*(1+c.margen/100);
+ localStorage.setItem(KEY,JSON.stringify(d));render();openProduct(id)
+}
+
+function archiveAsk(id){
+ let p=findLot(id);if(!p)return;
+ $('ft').textContent='Archivar '+p.producto;
+ if(p.stock<=0.0001){finishArchive(id);return}
+ $('fb').innerHTML=`<div class="card"><h3 style="margin-top:0">Quedan ${p.stock.toFixed(2)} kg</h3><p style="color:var(--m);font-size:13px">Antes de archivar, dime qué pasó con esa existencia. El historial de la compra nunca se borra.</p>
+ <div class="archivechoices">
+  <button onclick="archiveSold('${p.id}')"><b>🧾 Se vendieron</b><small>Registrar los ${p.stock.toFixed(2)} kg restantes como venta.</small></button>
+  <button onclick="archiveLoss('${p.id}')"><b>🗑️ Fueron merma</b><small>Registrar los ${p.stock.toFixed(2)} kg restantes como pérdida.</small></button>
+  <button onclick="archiveKeep('${p.id}')"><b>📦 Todavía los tengo</b><small>Archivar esta compra conservando los ${p.stock.toFixed(2)} kg en su historial.</small></button>
+  <button onclick="openProduct('${p.id}')"><b>↩️ Cancelar</b><small>Volver a la ficha sin cambiar nada.</small></button>
+ </div></div>`
+}
+function archiveSold(id){
+ let p=findLot(id);if(!p)return;
+ let val=prompt(`Precio por kilo para los ${p.stock.toFixed(2)} kg restantes:`,p.suggested.toFixed(2));
+ if(val===null)return;let price=+val;if(price<=0)return alert('Ingresa un precio válido.');
+ d.ventas.push({id:Date.now(),loteId:p.id,producto:p.producto,kg:p.stock,precio:price,total:p.stock*price,fecha:today(),cierreArchivo:true});
+ finishArchive(id)
+}
+function archiveLoss(id){
+ let p=findLot(id);if(!p)return;
+ if(!confirm(`¿Registrar ${p.stock.toFixed(2)} kg de ${p.producto} como merma?`))return;
+ d.mermas.push({id:Date.now(),loteId:p.id,producto:p.producto,kg:p.stock,fecha:today(),cierreArchivo:true});
+ finishArchive(id)
+}
+function archiveKeep(id){if(confirm('Se archivará la compra, pero los kilos restantes quedarán conservados en el historial.'))finishArchive(id)}
+function finishArchive(id){
+ let c=d.compras.find(x=>String(x.id)===String(id));if(!c)return;c.archivada=true;c.fechaArchivo=today();
+ localStorage.setItem(KEY,JSON.stringify(d));closeForm();render();alert('Producto archivado. Su compra y movimientos siguen en el historial y reportes.')
+}
+
+function lotOptions(){
+ let a=activeLots();
+ return a.map(p=>`<option value="${p.id}">${esc(p.producto)} · ${p.stock.toFixed(2)} kg · ${fmtDate(p.fecha)}</option>`).join('')
+}
+function selectedLot(){
+ let e=$('flot');return e?findLot(e.value):null
+}
+function syncSaleLot(){
+ let p=selectedLot();if(!p)return;
+ if($('fval'))$('fval').value=p.suggested.toFixed(2);
+ if($('stockNote'))$('stockNote').textContent=`Disponible: ${p.stock.toFixed(2)} kg · costo ${money(p.costkg)}/kg · sugerido ${money(p.suggested)}/kg`;
+ saleTotal()
+}
+function syncLossLot(){
+ let p=selectedLot();if($('stockNote')&&p)$('stockNote').textContent=`Disponible: ${p.stock.toFixed(2)} kg · compra ${fmtDate(p.fecha)}`
+}
+
+function movs(){
+ let a=[];d.compras.forEach(x=>a.push({ty:'Compra',dt:x.fecha,n:x.producto+' · '+(+x.kg||0).toFixed(2)+' kg',a:+x.total||0,i:'🛒'}));
+ d.ventas.forEach(x=>a.push({ty:'Venta',dt:x.fecha,n:x.producto+' · '+(+x.kg||0).toFixed(2)+' kg',a:+x.total||(+x.kg||0)*(+x.precio||0),i:'🧾'}));
+ d.gastos.forEach(x=>a.push({ty:'Gasto',dt:x.fecha,n:x.tipo+(x.descripcion?' · '+x.descripcion:''),a:+x.monto||0,i:'⛽'}));
+ d.mermas.forEach(x=>a.push({ty:'Merma',dt:x.fecha,n:x.producto+' · '+(+x.kg||0).toFixed(2)+' kg',a:null,i:'🗑️'}));
+ return a.sort((a,b)=>(b.dt||'').localeCompare(a.dt||''))
+}
+function filterMov(v){mf=v;$('all').classList.toggle('on',v==='all');$('month').classList.toggle('on',v==='month');movements()}
+function movements(){let a=movs();if(mf==='month')a=a.filter(x=>x.dt?.startsWith(month()));$('ml').innerHTML=a.length?a.map(x=>`<div class="mov"><div><b>${x.i} ${x.ty} · ${esc(x.n)}</b><small>${fmtDate(x.dt)}</small></div><div class="amt">${x.a===null?'—':money(x.a)}</div></div>`).join(''):'<div class="empty">Sin movimientos.</div>'}
+
+function reports(){
+ let m=$('rm').value||month(),vs=d.ventas.filter(x=>x.fecha?.startsWith(m)),cs=d.compras.filter(x=>x.fecha?.startsWith(m)),gs=d.gastos.filter(x=>x.fecha?.startsWith(m)),
+ inc=vs.reduce((a,x)=>a+(+x.total||(+x.kg||0)*(+x.precio||0)),0),
+ ex=cs.reduce((a,x)=>a+(+x.total||0),0)+gs.reduce((a,x)=>a+(+x.monto||0),0),
+ kg=vs.reduce((a,x)=>a+(+x.kg||0),0);
+ $('ri').textContent=money(inc);$('re').textContent=money(ex);$('rp').textContent=money(inc-ex);$('rk').textContent=kg.toFixed(1)+' kg';
+ let top=new Map;vs.forEach(x=>{let k=norm(x.producto),p=top.get(k)||{name:x.producto,kg:0,total:0};p.kg+=+x.kg||0;p.total+=+x.total||(+x.kg||0)*(+x.precio||0);top.set(k,p)});
+ let ta=[...top.values()].sort((a,b)=>b.kg-a.kg);
+ $('top').innerHTML=ta.length?ta.slice(0,5).map(p=>`<div class="row"><div class="fruit">${fruit(p.name)}</div><div><b>${esc(p.name)}</b><small>${p.kg.toFixed(1)} kg vendidos</small></div><div class="right"><b>${money(p.total)}</b></div></div>`).join(''):'<div class="empty">Sin ventas este mes.</div>';
+ renderPurchaseHistory(cs);chart(m)
+}
+function renderPurchaseHistory(cs){
+ let el=$('purchaseHistory');if(!el)return;
+ if(!cs.length){el.innerHTML='<div class="empty">Sin compras este mes.</div>';return}
+ let groups={};cs.slice().sort((a,b)=>(b.fecha||'').localeCompare(a.fecha||'')).forEach(c=>{let w=weekOfMonth(c.fecha);(groups[w]??=[]).push(c)});
+ el.innerHTML=Object.keys(groups).sort((a,b)=>+b-+a).map(w=>`<div class="weekhead">Semana ${w}</div>${groups[w].map(c=>{let p=lotStats(c);return `<div class="historyrow"><div><b>${fruit(c.producto)} ${esc(c.producto)}</b><small>${fmtDate(c.fecha)} · ${(+c.kg||0).toFixed(2)} kg · ${money(p.costkg)}/kg${c.archivada?' · Archivado':''}</small></div><b>${money(c.total)}</b></div>`}).join('')}`).join('')
+}
+function chart(m){
+ let days=new Date(+m.slice(0,4),+m.slice(5,7),0).getDate(),N=5,inc=Array(N).fill(0),ex=Array(N).fill(0),bi=s=>Math.min(N-1,Math.floor(((+s.slice(8,10))-1)/(days/N)));
+ d.ventas.filter(x=>x.fecha?.startsWith(m)).forEach(x=>inc[bi(x.fecha)]+=+x.total||(+x.kg||0)*(+x.precio||0));
+ d.gastos.filter(x=>x.fecha?.startsWith(m)).forEach(x=>ex[bi(x.fecha)]+=+x.monto||0);
+ d.compras.filter(x=>x.fecha?.startsWith(m)).forEach(x=>ex[bi(x.fecha)]+=+x.total||0);
+ let max=Math.max(1,...inc,...ex),W=300,H=135,p=15,pts=a=>a.map((v,i)=>`${p+i*((W-2*p)/(N-1))},${H-p-(v/max)*(H-2*p)}`).join(' ');
+ $('chart').innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><line x1="${p}" y1="${H-p}" x2="${W-p}" y2="${H-p}" stroke="var(--line)"/><polyline points="${pts(inc)}" fill="none" stroke="var(--g)" stroke-width="3"/><polyline points="${pts(ex)}" fill="none" stroke="var(--r)" stroke-width="3"/></svg><div style="text-align:center;font-size:10px;color:var(--m)"><b style="color:var(--g)">● Ingresos</b> &nbsp; <b style="color:var(--r)">● Compras + gastos</b></div>`
+}
+
+function go(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('on'));$(id).classList.add('on');document.querySelectorAll('.bottom button').forEach(x=>x.classList.toggle('on',x.dataset.p===id));render()}
+function drawer(){document.querySelector('.drawer').classList.toggle('on')}
+function setTheme(v){document.documentElement.dataset.theme=v;localStorage.setItem(THEME,v);$('theme').textContent=v==='dark'?'☀️':'🌙';$('themeColor').content=v==='dark'?'#071018':'#ffffff'}
+function theme(){setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark')}
+
+function openMovement(t){
+ let title={compra:'Nueva compra',venta:'Nueva venta',gasto:'Nuevo gasto',merma:'Nueva merma'}[t],h='';$('ft').textContent=title;
+ if(t==='compra')h=`<div class="card"><label>Producto</label><input id="fp" placeholder="Ej. Papa" oninput="purchaseCalc()"><div class="two"><div><label>Cantidad comprada (kg)</label><input id="fk" type="number" inputmode="decimal" step=".01" placeholder="30" oninput="purchaseCalc()"></div><div><label>Costo total del bulto/caja</label><input id="fval" type="number" inputmode="decimal" step=".01" placeholder="130" oninput="purchaseCalc()"></div></div><label>Porcentaje de ganancia deseado</label><input id="fmargin" type="number" inputmode="decimal" step=".01" value="30" placeholder="20, 30, 40..." oninput="purchaseCalc()"><div class="purchasecalc"><div class="equation" id="peq">Ingresa kilos y costo para calcular.</div><div class="pricegrid"><div class="pricebox"><small>Tu costo por kilo</small><strong id="pcost">$ 0.00</strong></div><div class="pricebox"><small>Precio sugerido por kilo</small><strong class="suggested" id="psuggest">$ 0.00</strong></div></div></div><label>Fecha</label><input id="fd" type="date" value="${today()}"><button class="primary" onclick="submit('compra')">Guardar compra</button></div>`;
+ if(t==='venta'){let opts=lotOptions();h=opts?`<div class="card"><label>Producto / compra activa</label><select id="flot" onchange="syncSaleLot()">${opts}</select><div id="stockNote" class="selectnote"></div><div class="two"><div><label>Cantidad (kg)</label><input id="fk" type="number" inputmode="decimal" step=".01" oninput="saleTotal()"></div><div><label>Precio por kg</label><input id="fval" type="number" inputmode="decimal" step=".01" oninput="saleTotal()"></div></div><div class="total"><small>Total</small><strong id="st">$ 0</strong></div><label>Fecha</label><input id="fd" type="date" value="${today()}"><button class="primary" onclick="submit('venta')">Guardar venta</button></div>`:`<div class="empty">No hay productos activos con existencia.</div>`}
+ if(t==='gasto')h=`<div class="card"><label>Tipo de gasto</label><select id="fkind"><option>Gasolina</option><option>Sueldo</option><option>Comida</option><option>Renta</option><option>Transporte</option><option>Otro</option></select><label>Descripción</label><input id="fp" placeholder="Opcional"><label>Monto</label><input id="fval" type="number" inputmode="decimal" step=".01"><label>Fecha</label><input id="fd" type="date" value="${today()}"><button class="primary" onclick="submit('gasto')">Guardar gasto</button></div>`;
+ if(t==='merma'){let opts=lotOptions();h=opts?`<div class="card"><label>Producto / compra activa</label><select id="flot" onchange="syncLossLot()">${opts}</select><div id="stockNote" class="selectnote"></div><label>Kilos perdidos</label><input id="fk" type="number" inputmode="decimal" step=".01"><label>Fecha</label><input id="fd" type="date" value="${today()}"><button class="primary" onclick="submit('merma')">Guardar merma</button></div>`:`<div class="empty">No hay productos activos con existencia.</div>`}
+ $('fb').innerHTML=h;$('modal').classList.add('on');if(t==='venta'&&$('flot'))syncSaleLot();if(t==='merma'&&$('flot'))syncLossLot()
+}
+function closeForm(){$('modal').classList.remove('on')}
+function saleTotal(){if($('st'))$('st').textContent=money((+$('fk').value||0)*(+$('fval').value||0))}
 function purchaseCalc(){let kg=+$('fk')?.value||0,total=+$('fval')?.value||0,margin=+$('fmargin')?.value||0,name=$('fp')?.value.trim()||'producto',cost=kg>0?total/kg:0,suggested=cost*(1+margin/100);if($('pcost'))$('pcost').textContent=money(cost);if($('psuggest'))$('psuggest').textContent=money(suggested);if($('peq')){$('peq').innerHTML=kg>0&&total>0?`Compraste <b>${esc(name)}</b>: ${kg.toFixed(2)} kg por <b>${money(total)}</b>.<br>${money(total)} ÷ ${kg.toFixed(2)} kg = <b>${money(cost)} por kg</b>.<br>Con ${margin.toFixed(0)}% de ganancia: <b style="color:var(--g)">${money(suggested)} por kg</b>.`:'Ingresa kilos y costo para calcular.'}}
+
+function submit(t){
+ let id=Date.now(),fecha=$('fd')?.value||today();
+ if(t==='compra'){
+  let producto=$('fp').value.trim(),kg=+$('fk').value,total=+$('fval').value,margen=+$('fmargin').value||0;
+  if(!producto||kg<=0||total<=0)return alert('Completa producto, kilos y costo.');
+  let costkg=total/kg,sugerido=costkg*(1+margen/100);
+  d.compras.push({id,producto,kg,total,margen,costkg,sugerido,fecha,archivada:false});
+  localStorage.setItem(KEY,JSON.stringify(d));closeForm();render();
+  alert(`Compra guardada ✅\n\n${producto}: ${kg.toFixed(2)} kg por ${money(total)}\nTu costo: ${money(costkg)} por kg\nGanancia: ${margen.toFixed(0)}%\nPrecio sugerido: ${money(sugerido)} por kg`);return
+ }
+ if(t==='venta'){
+  let p=selectedLot(),kg=+$('fk').value,precio=+$('fval').value;if(!p||kg<=0||precio<=0)return alert('Completa producto, kilos y precio.');
+  if(kg>p.stock+0.0001)return alert(`Solo tienes ${p.stock.toFixed(2)} kg disponibles de esta compra.`);
+  d.ventas.push({id,loteId:p.id,producto:p.producto,kg,precio,total:kg*precio,fecha})
+ }
+ if(t==='gasto'){let tipo=$('fkind').value,descripcion=$('fp').value.trim(),monto=+$('fval').value;if(monto<=0)return alert('Ingresa un monto válido.');d.gastos.push({id,tipo,descripcion,monto,fecha})}
+ if(t==='merma'){let p=selectedLot(),kg=+$('fk').value;if(!p||kg<=0)return alert('Completa producto y kilos.');if(kg>p.stock+0.0001)return alert(`Solo tienes ${p.stock.toFixed(2)} kg disponibles de esta compra.`);d.mermas.push({id,loteId:p.id,producto:p.producto,kg,fecha})}
+ localStorage.setItem(KEY,JSON.stringify(d));closeForm();render()
+}
+
 function openCalculator(){drawer();$('ft').textContent='Calculadora';$('fb').innerHTML=`<div class="card"><input id="calcDisplay" class="calcdisplay" value="" placeholder="0" readonly><div class="calckeys"><button onclick="calcClear()">C</button><button onclick="calcBack()">⌫</button><button class="op" onclick="calcAdd('(')">(</button><button class="op" onclick="calcAdd(')')">)</button><button onclick="calcAdd('7')">7</button><button onclick="calcAdd('8')">8</button><button onclick="calcAdd('9')">9</button><button class="op" onclick="calcAdd('/')">÷</button><button onclick="calcAdd('4')">4</button><button onclick="calcAdd('5')">5</button><button onclick="calcAdd('6')">6</button><button class="op" onclick="calcAdd('*')">×</button><button onclick="calcAdd('1')">1</button><button onclick="calcAdd('2')">2</button><button onclick="calcAdd('3')">3</button><button class="op" onclick="calcAdd('-')">−</button><button onclick="calcAdd('0')">0</button><button onclick="calcAdd('.')">.</button><button onclick="calcAdd('%')">%</button><button class="op" onclick="calcAdd('+')">+</button><button class="wide" onclick="calcAdd('00')">00</button><button class="wide eq" onclick="calcResult()">=</button></div></div>`;$('modal').classList.add('on')}
 function calcAdd(v){let e=$('calcDisplay');if(e)e.value+=v}
 function calcClear(){let e=$('calcDisplay');if(e)e.value=''}
 function calcBack(){let e=$('calcDisplay');if(e)e.value=e.value.slice(0,-1)}
 function calcResult(){let e=$('calcDisplay');if(!e)return;try{let x=e.value.replace(/(\d+(?:\.\d+)?)%/g,'($1/100)');if(!/^[0-9+\-*/().\s]+$/.test(x))throw 0;let r=Function('"use strict";return ('+x+')')();if(!Number.isFinite(r))throw 0;e.value=String(Math.round((r+Number.EPSILON)*1000000)/1000000)}catch(_){e.value='Error'}}
-function submit(t){let id=Date.now(),fecha=$('fd').value;if(t==='compra'){let producto=$('fp').value.trim(),kg=+$('fk').value,total=+$('fval').value,margen=+$('fmargin').value||0;if(!producto||kg<=0||total<=0)return alert('Completa producto, kilos y costo.');let costkg=total/kg,sugerido=costkg*(1+margen/100);d.compras.push({id,producto,kg,total,margen,costkg,sugerido,fecha});save();closeForm();alert(`Compra guardada ✅\n\n${producto}: ${kg.toFixed(2)} kg por ${money(total)}\nTu costo: ${money(costkg)} por kg\nGanancia: ${margen.toFixed(0)}%\nPrecio sugerido: ${money(sugerido)} por kg`);return}if(t==='venta'){let producto=$('fp').value.trim(),kg=+$('fk').value,precio=+$('fval').value;if(!producto||kg<=0||precio<=0)return alert('Completa producto, kilos y precio.');d.ventas.push({id,producto,kg,precio,total:kg*precio,fecha})}if(t==='gasto'){let tipo=$('fkind').value,descripcion=$('fp').value.trim(),monto=+$('fval').value;if(monto<=0)return alert('Ingresa un monto válido.');d.gastos.push({id,tipo,descripcion,monto,fecha})}if(t==='merma'){let producto=$('fp').value.trim(),kg=+$('fk').value;if(!producto||kg<=0)return alert('Completa producto y kilos.');d.mermas.push({id,producto,kg,fecha})}save();closeForm()}
-function backup(){let b=new Blob([JSON.stringify({app:'Frutero',version:2,fechaRespaldo:new Date().toISOString(),datos:d},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='frutero-respaldo-'+today()+'.json';a.click();URL.revokeObjectURL(a.href)}function restore(){let f=$('bf').files[0];if(!f)return;let r=new FileReader;r.onload=e=>{try{let o=JSON.parse(e.target.result),x=o.datos||o;if(!x.compras||!x.ventas||!x.mermas||!x.gastos)throw 0;if(confirm('¿Reemplazar los datos actuales?')){d=x;save();drawer();alert('Respaldo restaurado.')}}catch(_){alert('Archivo de respaldo no válido.')}};r.readAsText(f)}
-function render(){home();inventory();movements();reports()}setTheme(localStorage.getItem('fruteroTheme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));$('rm').value=month();$('date').innerHTML=new Date().toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'}).replaceAll(' ','<br>');render();if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js'));
-</script></body></html>
+
+function backup(){let b=new Blob([JSON.stringify({app:'Frutero',version:'2.5',fechaRespaldo:new Date().toISOString(),datos:d},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='frutero-respaldo-'+today()+'.json';a.click();URL.revokeObjectURL(a.href)}
+function restore(){let f=$('bf').files[0];if(!f)return;let r=new FileReader;r.onload=e=>{try{let o=JSON.parse(e.target.result),x=o.datos||o;if(!x.compras||!x.ventas||!x.mermas||!x.gastos)throw 0;if(confirm('¿Reemplazar los datos actuales?')){d=x;migrate();render();drawer();alert('Respaldo restaurado.')}}catch(_){alert('Archivo de respaldo no válido.')}};r.readAsText(f)}
+
+function render(){home();inventory();movements();reports()}
+setTheme(localStorage.getItem(THEME)||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
+$('rm').value=month();$('date').innerHTML=new Date().toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'}).replaceAll(' ','<br>');
+render();
+if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js'));
+</script>
+</body></html>
