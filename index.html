@@ -33,7 +33,7 @@
 .archivechoices{display:grid;gap:9px;margin-top:12px}
 .archivechoices button{width:100%;border:1px solid var(--line);border-radius:14px;padding:13px;background:var(--s2);color:var(--t);font-weight:800;text-align:left}
 .archivechoices button b{display:block}
-.archivechoices button small{display:block;color:var(--m);margin-top:3px}
+.archivechoices button small{display:block;color:var(--m);margin-top:3px}.deleteproduct{width:100%;border:1px solid color-mix(in srgb,var(--r) 55%,var(--line));border-radius:14px;padding:14px;background:color-mix(in srgb,var(--r) 10%,var(--s));color:var(--r);font-weight:900;margin-top:10px}
 .historyrow{padding:10px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px}
 .historyrow:last-child{border-bottom:0}
 .historyrow b{font-size:12px}
@@ -48,7 +48,7 @@
 <section id="movements" class="page"><div class="title"><h1>Movimientos</h1><span class="badge">Historial</span></div><div class="segment"><button id="all" class="on" onclick="filterMov('all')">Todos</button><button id="month" onclick="filterMov('month')">Este mes</button></div><div class="card" id="ml"></div></section>
 <section id="reports" class="page"><div class="head"><div class="title"><h1>Reportes</h1><span class="badge">Resumen mensual</span></div><input id="rm" type="month" onchange="render()" style="width:145px;padding:9px"></div><div class="reportgrid"><div class="reportcard green"><small>Ingresos</small><strong id="ri">$0</strong></div><div class="reportcard red"><small>Compras + gastos</small><strong id="re">$0</strong></div><div class="reportcard blue"><small>Utilidad</small><strong id="rp">$0</strong></div><div class="reportcard yellow"><small>Ventas</small><strong id="rk">0 kg</strong></div></div><div class="head"><h2>Ingresos vs gastos</h2></div><div class="chart" id="chart"></div><div class="head"><h2>Productos más vendidos</h2></div><div class="list" id="top"></div><div class="head"><h2>Compras del mes</h2></div><div class="card" id="purchaseHistory"></div></section>
 </main><nav class="bottom"><button class="on" data-p="home" onclick="go('home')"><i>⌂</i>Inicio</button><button data-p="inventory" onclick="go('inventory')"><i>▣</i>Inventario</button><button data-p="movements" onclick="go('movements')"><i>↻</i>Movimientos</button><button data-p="reports" onclick="go('reports')"><i>▥</i>Reportes</button></nav></div>
-<div class="drawer" id="drawer" onclick="if(event.target===this)drawer()"><div class="drawerbox"><h2>🍎 Frutero</h2><button class="menu" onclick="theme()">🌙 / ☀️ Cambiar modo</button><button class="menu" onclick="openCalculator()">🧮 Calculadora</button><button class="menu" onclick="backup()">💾 Crear respaldo</button><label class="menu">📂 Restaurar respaldo<input id="bf" type="file" accept=".json" onchange="restore()" hidden></label><button class="menu" onclick="go('reports');drawer()">📊 Ver reportes</button><p style="color:var(--m);font-size:11px;margin-top:20px">Frutero v2.5 · Los datos se guardan en este dispositivo.</p></div></div>
+<div class="drawer" id="drawer" onclick="if(event.target===this)drawer()"><div class="drawerbox"><h2>🍎 Frutero</h2><button class="menu" onclick="theme()">🌙 / ☀️ Cambiar modo</button><button class="menu" onclick="openCalculator()">🧮 Calculadora</button><button class="menu" onclick="backup()">💾 Crear respaldo</button><label class="menu">📂 Restaurar respaldo<input id="bf" type="file" accept=".json" onchange="restore()" hidden></label><button class="menu" onclick="go('reports');drawer()">📊 Ver reportes</button><p style="color:var(--m);font-size:11px;margin-top:20px">Frutero v2.6 · Funciona sin internet · Datos en este dispositivo.</p></div></div>
 <div class="modal" id="modal"><div class="sheet"><div class="handle"></div><div class="sheethead"><h2 id="ft">Nuevo movimiento</h2><button class="close" onclick="closeForm()">✕</button></div><div id="fb"></div></div></div>
 
 <script>
@@ -176,7 +176,8 @@ function openProduct(id){
   <button class="primary" onclick="saveMargin('${p.id}')">Guardar margen</button>
  </div>
  <div class="head"><h2>Movimientos de esta compra</h2></div><div class="card">${hist}</div>
- <button class="danger" onclick="archiveAsk('${p.id}')">📦 Archivar producto</button>`;
+ <button class="danger" onclick="archiveAsk('${p.id}')">📦 Archivar producto</button>
+ <button class="deleteproduct" onclick="deleteProduct('${p.id}')">🗑️ Borrar producto</button>`;
  $('modal').classList.add('on')
 }
 function previewMargin(id){
@@ -188,6 +189,19 @@ function saveMargin(id){
  let c=d.compras.find(x=>String(x.id)===String(id));if(!c)return;
  c.margen=Math.max(0,+$('detailMargin').value||0);c.costkg=(+c.kg||0)?(+c.total||0)/(+c.kg||0):0;c.sugerido=c.costkg*(1+c.margen/100);
  localStorage.setItem(KEY,JSON.stringify(d));render();openProduct(id)
+}
+
+function deleteProduct(id){
+ let p=findLot(id);if(!p)return;
+ const sales=d.ventas.filter(x=>String(x.loteId)===String(id));
+ const losses=d.mermas.filter(x=>String(x.loteId)===String(id));
+ let extra=(sales.length||losses.length)?`\n\nTambién se borrarán ${sales.length} venta(s) y ${losses.length} merma(s) ligadas a esta compra.`:'';
+ if(!confirm(`BORRADO PERMANENTE\n\n¿Borrar la compra de ${p.producto} del ${fmtDate(p.fecha)}?${extra}\n\nUsa Archivar si quieres conservar el historial.`))return;
+ if(!confirm('Última confirmación: esta acción no se puede deshacer. ¿Borrar definitivamente?'))return;
+ d.compras=d.compras.filter(x=>String(x.id)!==String(id));
+ d.ventas=d.ventas.filter(x=>String(x.loteId)!==String(id));
+ d.mermas=d.mermas.filter(x=>String(x.loteId)!==String(id));
+ localStorage.setItem(KEY,JSON.stringify(d));closeForm();render();alert('Producto borrado definitivamente.');
 }
 
 function archiveAsk(id){
@@ -317,13 +331,13 @@ function calcClear(){let e=$('calcDisplay');if(e)e.value=''}
 function calcBack(){let e=$('calcDisplay');if(e)e.value=e.value.slice(0,-1)}
 function calcResult(){let e=$('calcDisplay');if(!e)return;try{let x=e.value.replace(/(\d+(?:\.\d+)?)%/g,'($1/100)');if(!/^[0-9+\-*/().\s]+$/.test(x))throw 0;let r=Function('"use strict";return ('+x+')')();if(!Number.isFinite(r))throw 0;e.value=String(Math.round((r+Number.EPSILON)*1000000)/1000000)}catch(_){e.value='Error'}}
 
-function backup(){let b=new Blob([JSON.stringify({app:'Frutero',version:'2.5',fechaRespaldo:new Date().toISOString(),datos:d},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='frutero-respaldo-'+today()+'.json';a.click();URL.revokeObjectURL(a.href)}
+function backup(){let b=new Blob([JSON.stringify({app:'Frutero',version:'2.6',fechaRespaldo:new Date().toISOString(),datos:d},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='frutero-respaldo-'+today()+'.json';a.click();URL.revokeObjectURL(a.href)}
 function restore(){let f=$('bf').files[0];if(!f)return;let r=new FileReader;r.onload=e=>{try{let o=JSON.parse(e.target.result),x=o.datos||o;if(!x.compras||!x.ventas||!x.mermas||!x.gastos)throw 0;if(confirm('¿Reemplazar los datos actuales?')){d=x;migrate();render();drawer();alert('Respaldo restaurado.')}}catch(_){alert('Archivo de respaldo no válido.')}};r.readAsText(f)}
 
 function render(){home();inventory();movements();reports()}
 setTheme(localStorage.getItem(THEME)||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
 $('rm').value=month();$('date').innerHTML=new Date().toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'}).replaceAll(' ','<br>');
 render();
-if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js'));
+if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js',{updateViaCache:'none'}).then(r=>r.update()).catch(()=>{}));
 </script>
 </body></html>
