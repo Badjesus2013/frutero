@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#ffffff" id="themeColor"><link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="icons/icon-192.png"><title>Frutero</title>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#ffffff" id="themeColor"><link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="icons/icon-192.png"><title>El Ahorro - Frutas y Verduras</title>
 <style>
 :root{--bg:#f3f6f7;--s:#fff;--s2:#f1f4f6;--t:#101820;--m:#758291;--line:#e5e9ed;--g:#08b968;--r:#f04e5c;--o:#ff8b31;--p:#8752ed;--b:#2688e8;--y:#d59b00;--sh:0 10px 28px #0f172a12}html[data-theme=dark]{--bg:#071018;--s:#0d1822;--s2:#14212c;--t:#f7fafc;--m:#9aa8b6;--line:#20303d;--sh:0 12px 30px #0005}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--t);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select{font:inherit}button{cursor:pointer}.app{width:100%;max-width:520px;min-height:100dvh;margin:auto;background:var(--s);padding-bottom:88px}.top{padding:calc(16px + env(safe-area-inset-top)) 18px 8px;display:flex;align-items:center;justify-content:space-between}.brand{font-size:24px;font-weight:900}.ib{width:42px;height:42px;border:1px solid var(--line);border-radius:14px;background:var(--s2);color:var(--t);font-size:19px}.page{display:none;padding:10px 17px 24px}.page.on{display:block}.hello{display:flex;justify-content:space-between;align-items:center;margin:4px 0 18px}.hello h1{font-size:25px;margin:0 0 4px}.hello p{margin:0;color:var(--m);font-size:13px}.date{font-size:11px;color:var(--m);background:var(--s2);border:1px solid var(--line);border-radius:13px;padding:8px;text-align:center}.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.quick button{border:0;color:#fff;border-radius:17px;padding:13px 3px 11px;font-size:11px;font-weight:800;box-shadow:var(--sh)}.quick i{display:block;font-style:normal;font-size:23px;margin-bottom:4px}.buy{background:linear-gradient(145deg,#13ca78,#05a95e)}.sale{background:linear-gradient(145deg,#ff6570,#ed4554)}.exp{background:linear-gradient(145deg,#ffa14e,#f1781f)}.loss{background:linear-gradient(145deg,#9a68f4,#7944dd)}.stats,.reportgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}.stat{border-radius:18px;padding:14px;min-height:100px}.stat small{font-size:12px;font-weight:700}.stat strong{display:block;font-size:22px;margin:5px 0}.stat span{font-size:10px;color:var(--m)}.green{background:color-mix(in srgb,var(--g) 13%,var(--s));color:var(--g)}.red{background:color-mix(in srgb,var(--r) 13%,var(--s));color:var(--r)}.blue{background:color-mix(in srgb,var(--b) 13%,var(--s));color:var(--b)}.yellow{background:color-mix(in srgb,#f1c40f 16%,var(--s));color:var(--y)}.head{display:flex;align-items:center;justify-content:space-between;margin:18px 0 10px}.head h2{font-size:17px;margin:0}.link{border:0;background:none;color:var(--b);font-weight:700}.list{border:1px solid var(--line);border-radius:18px;overflow:hidden}.row{display:grid;grid-template-columns:42px 1fr auto;gap:9px;align-items:center;padding:12px;border-bottom:1px solid var(--line)}.row:last-child{border:0}.fruit{width:40px;height:40px;display:grid;place-items:center;border-radius:13px;background:var(--s2);font-size:23px}.row b{display:block;font-size:13px}.row small{font-size:10px;color:var(--m)}.right{text-align:right}.empty{text-align:center;padding:25px;color:var(--m);font-size:13px}.title{margin:4px 0 16px}.title h1{margin:0;font-size:24px}.badge{font-size:10px;color:var(--m);background:var(--s2);padding:4px 8px;border-radius:99px}.bottom{position:fixed;z-index:20;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:520px;display:grid;grid-template-columns:repeat(4,1fr);background:color-mix(in srgb,var(--s) 95%,transparent);backdrop-filter:blur(15px);border-top:1px solid var(--line);padding:7px 6px calc(7px + env(safe-area-inset-bottom))}.bottom button{border:0;background:none;color:var(--m);font-size:10px;font-weight:700;padding:5px}.bottom i{display:block;font-style:normal;font-size:20px}.bottom .on{color:var(--g)}.modal,.drawer{position:fixed;z-index:60;inset:0;background:#0007;display:none}.modal.on{display:flex;align-items:flex-end;justify-content:center}.sheet{width:100%;max-width:520px;max-height:92dvh;overflow:auto;background:var(--s);border-radius:24px 24px 0 0;padding:10px 18px calc(24px + env(safe-area-inset-bottom))}.handle{width:44px;height:5px;background:var(--line);border-radius:99px;margin:2px auto 13px}.sheethead{display:flex;justify-content:space-between;align-items:center}.sheethead h2{margin:0}.close{width:38px;height:38px;border:0;border-radius:12px;background:var(--s2);color:var(--t)}.card{border:1px solid var(--line);border-radius:18px;padding:15px;margin-top:14px}label{display:block;font-size:12px;font-weight:800;margin:12px 0 6px}input,select{width:100%;padding:13px;border:1px solid var(--line);border-radius:13px;background:var(--s2);color:var(--t);outline:none}.two{display:grid;grid-template-columns:1fr 1fr;gap:9px}.total{background:color-mix(in srgb,var(--g) 13%,var(--s));color:var(--g);border-radius:15px;padding:13px;margin-top:13px}.total strong{display:block;font-size:24px}.primary{width:100%;border:0;border-radius:14px;padding:14px;background:var(--g);color:#fff;font-weight:900;margin-top:15px}.drawer.on{display:block}.drawerbox{width:min(84%,350px);height:100%;background:var(--s);padding:calc(24px + env(safe-area-inset-top)) 17px}.drawerbox h2{margin:0 0 22px}.menu{width:100%;border:1px solid var(--line);background:var(--s2);color:var(--t);padding:13px;text-align:left;border-radius:13px;margin-bottom:9px;font-weight:700}.mov{display:flex;justify-content:space-between;gap:8px;padding:12px 0;border-bottom:1px solid var(--line)}.mov:last-child{border:0}
 .movactions{display:flex;align-items:center;gap:8px}
@@ -46,19 +46,45 @@
 .weekhead{font-size:11px;font-weight:900;color:var(--m);text-transform:uppercase;letter-spacing:.04em;margin:14px 0 6px}
 .selectnote{font-size:10px;color:var(--m);margin-top:6px}
 @media(max-width:360px){.page{padding-left:12px;padding-right:12px}.quick{gap:5px}.quick button{font-size:10px}.stat strong{font-size:19px}}@media(min-width:521px){body{padding:18px}.app{border-radius:26px;min-height:calc(100dvh - 36px);box-shadow:0 25px 70px #0f172a24}.bottom{bottom:18px;border-radius:0 0 26px 26px}}
+
+.brand{height:48px;max-width:265px;display:flex;align-items:center;justify-content:center}
+.brand img{display:block;max-width:100%;max-height:48px;object-fit:contain}
+.drawerbrand{height:72px;display:flex;align-items:center;margin-bottom:18px}
+.drawerbrand img{max-width:100%;max-height:68px;object-fit:contain}
+.quick{display:flex;overflow-x:auto;gap:8px;padding-bottom:4px;scrollbar-width:none}
+.quick::-webkit-scrollbar{display:none}
+.quick button{flex:0 0 96px}
+.cash{background:linear-gradient(145deg,#2e9dff,#1672d4)}
+.assistant-fab{position:fixed;z-index:35;right:max(18px,calc((100vw - 520px)/2 + 18px));bottom:88px;width:58px;height:58px;border:0;border-radius:50%;background:var(--s);box-shadow:0 10px 30px #0004;border:2px solid var(--line);padding:4px}
+.assistant-fab img{width:100%;height:100%;object-fit:contain;border-radius:50%}
+.assistant-dot{position:absolute;right:-2px;top:-2px;width:17px;height:17px;border-radius:50%;background:var(--r);color:#fff;font-size:10px;display:grid;place-items:center;font-weight:900}
+.info{border:1px solid var(--line);border-radius:16px;padding:13px;background:var(--s2);margin-top:10px}
+.info small{display:block;color:var(--m);font-size:10px}
+.info strong{display:block;font-size:20px;margin-top:3px}
+.good{color:var(--g)}.warn{color:var(--o)}.bad{color:var(--r)}
+.actiongrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.actiongrid button{border:1px solid var(--line);border-radius:13px;padding:12px;background:var(--s2);color:var(--t);font-weight:800}
+.assistant-msg{border-left:4px solid var(--g);padding:11px 12px;background:color-mix(in srgb,var(--g) 8%,var(--s));border-radius:12px;margin:9px 0;font-size:12px;line-height:1.45}
+.minirow{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:12px}
+.minirow:last-child{border:0}
+.rangeval{font-weight:900;color:var(--g)}
+.reconcile-row{border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:9px}
+.reconcile-row .two{margin-top:8px}
+@media(max-width:360px){.brand{max-width:210px}.quick button{flex-basis:88px}}
+
 </style></head><body>
-<div class="app"><header class="top"><button class="ib" onclick="drawer()">☰</button><div class="brand">🍎 Frutero</div><button class="ib" id="theme" onclick="theme()">🌙</button></header><main>
-<section id="home" class="page on"><div class="hello"><div><h1>Hola, Jesús</h1><p>Tu negocio, claro y bajo control 🌿</p></div><div class="date" id="date"></div></div><div class="quick"><button class="buy" onclick="openMovement('compra')"><i>🛒</i>Compra</button><button class="sale" onclick="openMovement('venta')"><i>🧾</i>Venta</button><button class="exp" onclick="openMovement('gasto')"><i>⛽</i>Gasto</button><button class="loss" onclick="openMovement('merma')"><i>🗑️</i>Merma</button></div><div class="stats"><div class="stat green"><small>Ventas hoy</small><strong id="vh">$0</strong><span id="vhc">0 ventas</span></div><div class="stat red"><small>Gastos hoy</small><strong id="gh">$0</strong><span id="ghc">0 registros</span></div><div class="stat blue"><small>Inventario (costo)</small><strong id="iv">$0</strong><span id="ipc">0 productos</span></div><div class="stat yellow"><small>Utilidad del mes</small><strong id="um">$0</strong><span>ventas − compras − gastos</span></div></div><div class="head"><h2>Productos principales</h2><button class="link" onclick="go('inventory')">Ver todos ›</button></div><div class="list" id="hp"></div></section>
+<div class="app"><header class="top"><button class="ib" onclick="drawer()">☰</button><div class="brand"><img src="assets/logo-horizontal.png" alt="El Ahorro Frutas y Verduras"></div><button class="ib" id="theme" onclick="theme()">🌙</button></header><main>
+<section id="home" class="page on"><div class="hello"><div><h1>Hola, Jesús</h1><p>Tu negocio, claro y bajo control 🌿</p></div><div class="date" id="date"></div></div><div class="quick"><button class="buy" onclick="openMovement('compra')"><i>🛒</i>Compra</button><button class="sale" onclick="openMovement('venta')"><i>🧾</i>Venta</button><button class="exp" onclick="openMovement('gasto')"><i>⛽</i>Gasto</button><button class="loss" onclick="openMovement('merma')"><i>🗑️</i>Merma</button><button class="cash" onclick="openCash()"><i>💵</i>Caja</button></div><div class="stats"><div class="stat green"><small>Ventas hoy</small><strong id="vh">$0</strong><span id="vhc">0 ventas</span></div><div class="stat red"><small>Gastos hoy</small><strong id="gh">$0</strong><span id="ghc">0 registros</span></div><div class="stat blue"><small>Inventario (costo)</small><strong id="iv">$0</strong><span id="ipc">0 productos</span></div><div class="stat yellow"><small>Utilidad del mes</small><strong id="um">$0</strong><span>ventas − costo vendido − gastos</span></div></div><div class="head"><h2>Productos principales</h2><button class="link" onclick="go('inventory')">Ver todos ›</button></div><div class="list" id="hp"></div></section>
 <section id="inventory" class="page"><div class="title"><h1>Inventario</h1><span class="badge">Stock actual</span></div><div class="invsum"><div class="stat blue"><small>Kilos disponibles</small><strong id="ik">0 kg</strong></div><div class="stat green"><small>Valor estimado</small><strong id="ival">$0</strong></div></div><div class="head"><h2>Productos</h2></div><div class="list" id="il"></div></section>
 <section id="movements" class="page"><div class="title"><h1>Movimientos</h1><span class="badge">Historial</span></div><div class="segment"><button id="all" class="on" onclick="filterMov('all')">Todos</button><button id="month" onclick="filterMov('month')">Este mes</button></div><div class="card" id="ml"></div></section>
 <section id="reports" class="page"><div class="head"><div class="title"><h1>Reportes</h1><span class="badge">Resumen mensual</span></div><input id="rm" type="month" onchange="render()" style="width:145px;padding:9px"></div><div class="reportgrid"><div class="reportcard green"><small>Ingresos</small><strong id="ri">$0</strong></div><div class="reportcard red"><small>Compras + gastos</small><strong id="re">$0</strong></div><div class="reportcard blue"><small>Utilidad</small><strong id="rp">$0</strong></div><div class="reportcard yellow"><small>Ventas</small><strong id="rk">0 kg</strong></div></div><div class="head"><h2>Ingresos vs gastos</h2></div><div class="chart" id="chart"></div><div class="head"><h2>Productos más vendidos</h2></div><div class="list" id="top"></div><div class="head"><h2>Compras del mes</h2></div><div class="card" id="purchaseHistory"></div></section>
-</main><nav class="bottom"><button class="on" data-p="home" onclick="go('home')"><i>⌂</i>Inicio</button><button data-p="inventory" onclick="go('inventory')"><i>▣</i>Inventario</button><button data-p="movements" onclick="go('movements')"><i>↻</i>Movimientos</button><button data-p="reports" onclick="go('reports')"><i>▥</i>Reportes</button></nav></div>
-<div class="drawer" id="drawer" onclick="if(event.target===this)drawer()"><div class="drawerbox"><h2>🍎 Frutero</h2><button class="menu" onclick="theme()">🌙 / ☀️ Cambiar modo</button><button class="menu" onclick="openCalculator()">🧮 Calculadora</button><button class="menu" onclick="backup()">💾 Crear respaldo</button><label class="menu">📂 Restaurar respaldo<input id="bf" type="file" accept=".json" onchange="restore()" hidden></label><button class="menu" onclick="go('reports');drawer()">📊 Ver reportes</button><p style="color:var(--m);font-size:11px;margin-top:20px">Frutero v2.7 · Venta por kilo o bolsa · Funciona sin internet · Datos en este dispositivo.</p></div></div>
+</main><nav class="bottom"><button class="on" data-p="home" onclick="go('home')"><i>⌂</i>Inicio</button><button data-p="inventory" onclick="go('inventory')"><i>▣</i>Inventario</button><button data-p="movements" onclick="go('movements')"><i>↻</i>Movimientos</button><button data-p="reports" onclick="go('reports')"><i>▥</i>Reportes</button></nav><button class="assistant-fab" onclick="openAssistant()" title="Asistente El Ahorro"><img src="assets/logo-circular.png" alt="Asistente"><span class="assistant-dot" id="assistantDot">!</span></button></div>
+<div class="drawer" id="drawer" onclick="if(event.target===this)drawer()"><div class="drawerbox"><div class="drawerbrand"><img src="assets/logo-horizontal.png" alt="El Ahorro Frutas y Verduras"></div><button class="menu" onclick="theme()">🌙 / ☀️ Cambiar modo</button><button class="menu" onclick="openCalculator()">🧮 Calculadora</button><button class="menu" onclick="openCash();drawer()">💵 Caja diaria</button><button class="menu" onclick="openReconcile();drawer()">⚖️ Arqueo de inventario</button><button class="menu" onclick="openFinance();drawer()">💰 Ahorro y reinversión</button><button class="menu" onclick="openAssistant();drawer()">🧑‍🌾 Asistente El Ahorro</button><button class="menu" onclick="backup()">💾 Crear respaldo</button><label class="menu">📂 Restaurar respaldo<input id="bf" type="file" accept=".json" onchange="restore()" hidden></label><button class="menu" onclick="go('reports');drawer()">📊 Ver reportes</button><p style="color:var(--m);font-size:11px;margin-top:20px">El Ahorro v2.8 · Caja, arqueo, ahorro, reinversión y asistente · Funciona sin internet.</p></div></div>
 <div class="modal" id="modal"><div class="sheet"><div class="handle"></div><div class="sheethead"><h2 id="ft">Nuevo movimiento</h2><button class="close" onclick="closeForm()">✕</button></div><div id="fb"></div></div></div>
 
 <script>
 const KEY='fruteroDatosV1',THEME='fruteroTheme',$=id=>document.getElementById(id);
-const blank=()=>({compras:[],ventas:[],mermas:[],gastos:[]});
+const blank=()=>({compras:[],ventas:[],mermas:[],gastos:[],cajas:[],ajustesInventario:[],distribuciones:[],config:{ahorroPct:20,reinversionPct:60}});
 let d=(()=>{try{return Object.assign(blank(),JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){return blank()}})();
 let mf='all';
 
@@ -90,6 +116,12 @@ function fruit(n){
 
 /* Convierte datos de versiones anteriores al modelo por lote sin borrar historial. */
 function migrate(){
+ if(!Array.isArray(d.cajas))d.cajas=[];
+ if(!Array.isArray(d.ajustesInventario))d.ajustesInventario=[];
+ if(!Array.isArray(d.distribuciones))d.distribuciones=[];
+ if(!d.config)d.config={ahorroPct:20,reinversionPct:60};
+ if(d.config.ahorroPct==null)d.config.ahorroPct=20;
+ if(d.config.reinversionPct==null)d.config.reinversionPct=60;
  d.compras.forEach(c=>{
    if(c.id==null)c.id=Date.now()+Math.floor(Math.random()*100000);
    if(c.margen==null)c.margen=30;
@@ -123,12 +155,13 @@ function lotStats(c){
  const losses=d.mermas.filter(x=>String(x.loteId)===String(c.id));
  const sold=sales.reduce((a,x)=>a+(+x.kg||0),0);
  const loss=losses.reduce((a,x)=>a+(+x.kg||0),0);
- const stock=Math.max(0,(+c.kg||0)-sold-loss);
+ const adjustment=(d.ajustesInventario||[]).filter(x=>String(x.loteId)===String(c.id)).reduce((a,x)=>a+(+x.deltaKg||0),0);
+ const stock=Math.max(0,(+c.kg||0)-sold-loss+adjustment);
  const costkg=(+c.kg||0)?(+c.total||0)/(+c.kg||0):0;
  const margin=+c.margen||0;
  const suggested=costkg*(1+margin/100);
  const revenue=sales.reduce((a,x)=>a+(+x.total||(+x.kg||0)*(+x.precio||0)),0);
- return {...c,sold,loss,stock,costkg,margin,suggested,revenue,inventoryValue:stock*costkg}
+ return {...c,sold,loss,adjustment,stock,costkg,margin,suggested,revenue,inventoryValue:stock*costkg}
 }
 function activeLots(){return d.compras.map(lotStats).filter(x=>!x.archivada&&x.stock>0.0001).sort((a,b)=>(b.fecha||'').localeCompare(a.fecha||''))}
 function allLots(){return d.compras.map(lotStats).sort((a,b)=>((b.fecha||'')+String(b.id)).localeCompare((a.fecha||'')+String(a.id)))}
@@ -147,9 +180,10 @@ function home(){
  iv=lots.reduce((a,x)=>a+x.inventoryValue,0),
  mv=d.ventas.filter(x=>x.fecha?.startsWith(m)).reduce((a,x)=>a+(+x.total||(+x.kg||0)*(+x.precio||0)),0),
  mc=d.compras.filter(x=>x.fecha?.startsWith(m)).reduce((a,x)=>a+(+x.total||0),0),
- mg=d.gastos.filter(x=>x.fecha?.startsWith(m)).reduce((a,x)=>a+(+x.monto||0),0);
+ mg=d.gastos.filter(x=>x.fecha?.startsWith(m)).reduce((a,x)=>a+(+x.monto||0),0),
+ realProfit=profitForMonth(m).profit;
  $('vh').textContent=money(v);$('vhc').textContent=vs.length+' ventas';$('gh').textContent=money(g);$('ghc').textContent=gs.length+' registros';
- $('iv').textContent=money(iv);$('ipc').textContent=lots.length+' productos';$('um').textContent=money(mv-mc-mg);$('hp').innerHTML=rows(lots,4)
+ $('iv').textContent=money(iv);$('ipc').textContent=lots.length+' productos';$('um').textContent=money(realProfit);$('hp').innerHTML=rows(lots,4)
 }
 function inventory(){
  let a=activeLots();$('ik').textContent=a.reduce((s,p)=>s+p.stock,0).toFixed(2)+' kg';
@@ -263,6 +297,8 @@ function movs(){
  d.ventas.forEach(x=>{let detalle=x.modo==='bolsa'?`${+x.bolsas||1} bolsa(s) · ${(+x.pesoBolsa||0).toFixed(2)} kg c/u · ${(+x.kg||0).toFixed(2)} kg total`:`${(+x.kg||0).toFixed(2)} kg`;a.push({id:x.id,kind:'venta',ty:'Venta',dt:x.fecha,n:x.producto+' · '+detalle,a:+x.total||(+x.kg||0)*(+x.precio||0),i:'🧾'})});
  d.gastos.forEach(x=>a.push({id:x.id,kind:'gasto',ty:'Gasto',dt:x.fecha,n:x.tipo+(x.descripcion?' · '+x.descripcion:''),a:+x.monto||0,i:'⛽'}));
  d.mermas.forEach(x=>a.push({id:x.id,kind:'merma',ty:'Merma',dt:x.fecha,n:x.producto+' · '+(+x.kg||0).toFixed(2)+' kg',a:null,i:'🗑️'}));
+ (d.ajustesInventario||[]).forEach(x=>a.push({id:x.id,kind:'ajuste',ty:'Ajuste inventario',dt:x.fecha,n:x.producto+' · '+((+x.deltaKg||0)>=0?'+':'')+(+x.deltaKg||0).toFixed(2)+' kg · '+(x.motivo||'Ajuste'),a:x.monto!=null?+x.monto:null,i:'⚖️'}));
+ (d.distribuciones||[]).forEach(x=>a.push({id:x.id,kind:'distribucion',ty:x.tipo==='ahorro'?'Ahorro':'Reinversión',dt:x.fecha,n:x.nota||'Apartado de utilidad',a:+x.monto||0,i:x.tipo==='ahorro'?'💰':'📦'}));
  return a.sort((a,b)=>(b.dt||'').localeCompare(a.dt||''))
 }
 function filterMov(v){mf=v;$('all').classList.toggle('on',v==='all');$('month').classList.toggle('on',v==='month');movements()}
@@ -282,9 +318,9 @@ function deleteMovement(kind,id){
    d.ventas=d.ventas.filter(x=>String(x.loteId)!==String(id));
    d.mermas=d.mermas.filter(x=>String(x.loteId)!==String(id));
  }else{
-   let map={venta:'ventas',gasto:'gastos',merma:'mermas'},arr=map[kind];if(!arr)return;
+   let map={venta:'ventas',gasto:'gastos',merma:'mermas',ajuste:'ajustesInventario',distribucion:'distribuciones'},arr=map[kind];if(!arr)return;
    let x=d[arr].find(q=>String(q.id)===String(id));if(!x)return;
-   let desc=kind==='venta'?`la venta de ${x.producto}`:kind==='merma'?`la merma de ${x.producto}`:`el gasto de ${x.tipo}`;
+   let desc=kind==='venta'?`la venta de ${x.producto}`:kind==='merma'?`la merma de ${x.producto}`:kind==='ajuste'?`el ajuste de ${x.producto}`:kind==='distribucion'?`el apartado de ${x.tipo}`:`el gasto de ${x.tipo}`;
    if(!confirm(`¿Borrar ${desc}?`))return;
    d[arr]=d[arr].filter(q=>String(q.id)!==String(id));
  }
@@ -296,7 +332,7 @@ function reports(){
  inc=vs.reduce((a,x)=>a+(+x.total||(+x.kg||0)*(+x.precio||0)),0),
  ex=cs.reduce((a,x)=>a+(+x.total||0),0)+gs.reduce((a,x)=>a+(+x.monto||0),0),
  kg=vs.reduce((a,x)=>a+(+x.kg||0),0);
- $('ri').textContent=money(inc);$('re').textContent=money(ex);$('rp').textContent=money(inc-ex);$('rk').textContent=kg.toFixed(1)+' kg';
+ $('ri').textContent=money(inc);$('re').textContent=money(ex);$('rp').textContent=money(profitForMonth(m).profit);$('rk').textContent=kg.toFixed(1)+' kg';
  let top=new Map;vs.forEach(x=>{let k=norm(x.producto),p=top.get(k)||{name:x.producto,kg:0,total:0};p.kg+=+x.kg||0;p.total+=+x.total||(+x.kg||0)*(+x.precio||0);top.set(k,p)});
  let ta=[...top.values()].sort((a,b)=>b.kg-a.kg);
  $('top').innerHTML=ta.length?ta.slice(0,5).map(p=>`<div class="row"><div class="fruit">${fruit(p.name)}</div><div><b>${esc(p.name)}</b><small>${p.kg.toFixed(1)} kg vendidos</small></div><div class="right"><b>${money(p.total)}</b></div></div>`).join(''):'<div class="empty">Sin ventas este mes.</div>';
@@ -326,7 +362,7 @@ function openMovement(t){
  let title={compra:'Nueva compra',venta:'Nueva venta',gasto:'Nuevo gasto',merma:'Nueva merma'}[t],h='';$('ft').textContent=title;
  if(t==='compra')h=`<div class="card"><label>Producto</label><input id="fp" placeholder="Ej. Papa" oninput="purchaseCalc()"><div class="two"><div><label>Cantidad comprada (kg)</label><input id="fk" type="number" inputmode="decimal" step=".01" placeholder="30" oninput="purchaseCalc()"></div><div><label>Costo total del bulto/caja</label><input id="fval" type="number" inputmode="decimal" step=".01" placeholder="130" oninput="purchaseCalc()"></div></div><label>Porcentaje de ganancia deseado</label><input id="fmargin" type="number" inputmode="decimal" step=".01" value="30" placeholder="20, 30, 40..." oninput="purchaseCalc()"><div class="purchasecalc"><div class="equation" id="peq">Ingresa kilos y costo para calcular.</div><div class="pricegrid"><div class="pricebox"><small>Tu costo por kilo</small><strong id="pcost">$ 0.00</strong></div><div class="pricebox"><small>Precio sugerido por kilo</small><strong class="suggested" id="psuggest">$ 0.00</strong></div></div></div><label>Fecha</label><input id="fd" type="date" value="${today()}"><button class="primary" onclick="submit('compra')">Guardar compra</button></div>`;
  if(t==='venta'){let opts=lotOptions();h=opts?`<div class="card"><label>Producto / compra activa</label><select id="flot" onchange="syncSaleLot()">${opts}</select><div id="stockNote" class="selectnote"></div><label>¿Cómo lo vendiste?</label><div class="salemode"><button id="modeKg" class="on" onclick="setSaleMode('kg')">⚖️ Por kg</button><button id="modeBag" onclick="setSaleMode('bolsa')">🛍️ Por bolsa</button></div><input id="fmode" type="hidden" value="kg"><div id="saleKgFields"><div class="two"><div><label>Cantidad (kg)</label><input id="fk" type="number" inputmode="decimal" step=".01" oninput="saleTotal()"></div><div><label>Precio por kg</label><input id="fval" type="number" inputmode="decimal" step=".01" oninput="saleTotal()"></div></div></div><div id="saleBagFields" style="display:none"><div class="two"><div><label>Cantidad de bolsas</label><input id="fbags" type="number" inputmode="numeric" step="1" min="1" value="1" oninput="saleTotal()"></div><div><label>Peso por bolsa (kg)</label><input id="fbagkg" type="number" inputmode="decimal" step=".01" placeholder="1.5" oninput="saleTotal()"></div></div><label>Precio por bolsa</label><input id="fbagprice" type="number" inputmode="decimal" step=".01" placeholder="30" oninput="saleTotal()"><div id="bagNote" class="selectnote"></div></div><div class="total"><small>Total</small><strong id="st">$ 0</strong></div><label>Fecha</label><input id="fd" type="date" value="${today()}"><button class="primary" onclick="submit('venta')">Guardar venta</button></div>`:`<div class="empty">No hay productos activos con existencia.</div>`}
- if(t==='gasto')h=`<div class="card"><label>Tipo de gasto</label><select id="fkind"><option>Gasolina</option><option>Sueldo</option><option>Comida</option><option>Renta</option><option>Transporte</option><option>Otro</option></select><label>Descripción</label><input id="fp" placeholder="Opcional"><label>Monto</label><input id="fval" type="number" inputmode="decimal" step=".01"><label>Fecha</label><input id="fd" type="date" value="${today()}"><button class="primary" onclick="submit('gasto')">Guardar gasto</button></div>`;
+ if(t==='gasto')h=`<div class="card"><label>Tipo de gasto</label><select id="fkind"><option>Gasolina</option><option>Sueldo</option><option>Comida</option><option>Renta</option><option>Transporte</option><option>Otro</option></select><label>Descripción</label><input id="fp" placeholder="Opcional"><label>Monto</label><input id="fval" type="number" inputmode="decimal" step=".01"><label>¿Este dinero salió de la caja física?</label><select id="fcash"><option value="si">Sí</option><option value="no">No</option></select><label>Fecha</label><input id="fd" type="date" value="${today()}"><button class="primary" onclick="submit('gasto')">Guardar gasto</button></div>`;
  if(t==='merma'){let opts=lotOptions();h=opts?`<div class="card"><label>Producto / compra activa</label><select id="flot" onchange="syncLossLot()">${opts}</select><div id="stockNote" class="selectnote"></div><label>Kilos perdidos</label><input id="fk" type="number" inputmode="decimal" step=".01"><label>Fecha</label><input id="fd" type="date" value="${today()}"><button class="primary" onclick="submit('merma')">Guardar merma</button></div>`:`<div class="empty">No hay productos activos con existencia.</div>`}
  $('fb').innerHTML=h;$('modal').classList.add('on');if(t==='venta'&&$('flot'))syncSaleLot();if(t==='merma'&&$('flot'))syncLossLot()
 }
@@ -373,9 +409,158 @@ function submit(t){
     d.ventas.push({id,loteId:p.id,producto:p.producto,modo:'kg',kg,precio,total:kg*precio,fecha})
   }
  }
- if(t==='gasto'){let tipo=$('fkind').value,descripcion=$('fp').value.trim(),monto=+$('fval').value;if(monto<=0)return alert('Ingresa un monto válido.');d.gastos.push({id,tipo,descripcion,monto,fecha})}
+ if(t==='gasto'){let tipo=$('fkind').value,descripcion=$('fp').value.trim(),monto=+$('fval').value;if(monto<=0)return alert('Ingresa un monto válido.');d.gastos.push({id,tipo,descripcion,monto,fecha,saleDeCaja:$('fcash')?.value!=='no'})}
  if(t==='merma'){let p=selectedLot(),kg=+$('fk').value;if(!p||kg<=0)return alert('Completa producto y kilos.');if(kg>p.stock+0.0001)return alert(`Solo tienes ${p.stock.toFixed(2)} kg disponibles de esta compra.`);d.mermas.push({id,loteId:p.id,producto:p.producto,kg,fecha})}
  localStorage.setItem(KEY,JSON.stringify(d));closeForm();render()
+}
+
+
+function saleAmount(x){return +x.total||(+x.kg||0)*(+x.precio||0)}
+function saleCost(x){let c=d.compras.find(q=>String(q.id)===String(x.loteId));let ck=c?((+c.total||0)/(+c.kg||1)):0;return (+x.kg||0)*ck}
+function profitForDate(date){
+ let revenue=d.ventas.filter(x=>x.fecha===date).reduce((a,x)=>a+saleAmount(x),0);
+ let cogs=d.ventas.filter(x=>x.fecha===date).reduce((a,x)=>a+saleCost(x),0);
+ let expenses=d.gastos.filter(x=>x.fecha===date).reduce((a,x)=>a+(+x.monto||0),0);
+ return {revenue,cogs,expenses,profit:revenue-cogs-expenses}
+}
+function profitForMonth(m){
+ let vs=d.ventas.filter(x=>x.fecha?.startsWith(m));
+ let revenue=vs.reduce((a,x)=>a+saleAmount(x),0),cogs=vs.reduce((a,x)=>a+saleCost(x),0);
+ let expenses=d.gastos.filter(x=>x.fecha?.startsWith(m)).reduce((a,x)=>a+(+x.monto||0),0);
+ return {revenue,cogs,expenses,profit:revenue-cogs-expenses}
+}
+function cashRecord(date=today()){
+ let x=d.cajas.find(q=>q.fecha===date);
+ if(!x){x={id:Date.now(),fecha:date,fondoInicial:0,entradas:[],conteoFisico:null,diferenciaCerrada:false};d.cajas.push(x)}
+ if(!Array.isArray(x.entradas))x.entradas=[];
+ return x
+}
+function cashExpected(date=today()){
+ let c=cashRecord(date),sales=d.ventas.filter(x=>x.fecha===date).reduce((a,x)=>a+saleAmount(x),0);
+ let cashExpenses=d.gastos.filter(x=>x.fecha===date&&x.saleDeCaja!==false).reduce((a,x)=>a+(+x.monto||0),0);
+ let extras=c.entradas.reduce((a,x)=>a+(+x.monto||0),0);
+ let withdrawals=(d.distribuciones||[]).filter(x=>x.fecha===date&&x.retiradoCaja!==false).reduce((a,x)=>a+(+x.monto||0),0);
+ return {fondo:+c.fondoInicial||0,sales,cashExpenses,extras,withdrawals,expected:(+c.fondoInicial||0)+sales+extras-cashExpenses-withdrawals}
+}
+function openCash(){
+ let c=cashRecord(),x=cashExpected(),count=c.conteoFisico,diff=count==null?null:(+count-x.expected);
+ $('ft').textContent='💵 Caja de hoy';
+ $('fb').innerHTML=`<div class="card">
+ <label>Fondo inicial para dar feria</label><input id="cashFund" type="number" step=".01" value="${+c.fondoInicial||''}" placeholder="Ej. 300">
+ <button class="primary" onclick="saveCashFund()">Guardar fondo inicial</button>
+ <div class="info"><small>Ventas registradas hoy</small><strong>${money(x.sales)}</strong></div>
+ <div class="info"><small>Entradas de efectivo ajenas a ventas</small><strong>${money(x.extras)}</strong></div>
+ <div class="info"><small>Gastos pagados desde caja</small><strong>${money(x.cashExpenses)}</strong></div>
+ <div class="info"><small>Ahorro / reinversión retirados de caja</small><strong>${money(x.withdrawals)}</strong></div>
+ <div class="info"><small>Deberías tener físicamente</small><strong class="good">${money(x.expected)}</strong></div>
+ <label>Agregar dinero físico a caja (no es venta)</label><div class="two"><input id="cashExtra" type="number" step=".01" placeholder="Monto"><input id="cashExtraNote" placeholder="Motivo"></div>
+ <button class="primary" onclick="addCashExtra()">➕ Agregar efectivo</button>
+ <label>¿Cuánto dinero físico contaste?</label><input id="cashCount" type="number" step=".01" value="${count==null?'':count}">
+ <button class="primary" onclick="saveCashCount()">Comparar con la app</button>
+ ${diff==null?'':`<div class="info"><small>Resultado del corte</small><strong class="${Math.abs(diff)<.01?'good':diff>0?'warn':'bad'}">${Math.abs(diff)<.01?'Caja cuadrada':diff>0?'Sobrante '+money(diff):'Faltante '+money(Math.abs(diff))}</strong><span style="font-size:11px;color:var(--m)">${diff>0?'Puede haber ventas sin registrar. Déjalo como sobrante hasta identificarlo.':diff<0?'Revisa ventas, gastos, cambio entregado o retiros de efectivo.':'El efectivo coincide con lo registrado.'}</span></div>`}
+ <div class="head"><h2>Entradas extra de hoy</h2></div>${c.entradas.length?c.entradas.map(e=>`<div class="minirow"><span>${esc(e.nota||'Entrada de efectivo')}</span><b>${money(e.monto)}</b></div>`).join(''):'<div class="empty">Sin entradas extra.</div>'}
+ </div>`;
+ $('modal').classList.add('on')
+}
+function saveCashFund(){let c=cashRecord(),v=+$('cashFund').value||0;if(v<0)return alert('El fondo no puede ser negativo.');c.fondoInicial=v;save();openCash()}
+function addCashExtra(){let v=+$('cashExtra').value||0;if(v<=0)return alert('Ingresa un monto válido.');let c=cashRecord();c.entradas.push({id:Date.now(),monto:v,nota:$('cashExtraNote').value.trim(),hora:new Date().toISOString()});save();openCash()}
+function saveCashCount(){let v=+$('cashCount').value;if(!Number.isFinite(v)||v<0)return alert('Ingresa el efectivo que contaste.');let c=cashRecord();c.conteoFisico=v;c.diferenciaCerrada=true;save();openCash()}
+
+function openReconcile(){
+ let lots=activeLots();
+ $('ft').textContent='⚖️ Arqueo de inventario';
+ $('fb').innerHTML=lots.length?`<div class="card"><div class="assistant-msg">Pesa lo que realmente te queda. El Ahorro comparará el peso físico contra compras − ventas − mermas − ajustes.</div>${lots.map(p=>`<div class="reconcile-row"><b>${fruit(p.producto)} ${esc(p.producto)}</b><small style="display:block;color:var(--m)">App: ${p.stock.toFixed(2)} kg · compra ${fmtDate(p.fecha)}</small><div class="two"><div><label>Kg físicos</label><input id="phys_${p.id}" type="number" step=".01" placeholder="${p.stock.toFixed(2)}"></div><div style="display:flex;align-items:end"><button class="primary" style="margin:0" onclick="reconcileLot('${p.id}')">Comparar</button></div></div></div>`).join('')}</div>`:`<div class="empty">No hay lotes activos para contar.</div>`;
+ $('modal').classList.add('on')
+}
+function reconcileLot(id){
+ let p=findLot(id),actual=+$('phys_'+id).value;if(!p||!Number.isFinite(actual)||actual<0)return alert('Ingresa los kilos físicos.');
+ let diff=actual-p.stock;if(Math.abs(diff)<0.01)return alert('¡Cuadra! La diferencia es menor a 10 gramos.');
+ if(diff>0){
+   if(confirm(`Encontraste ${diff.toFixed(2)} kg MÁS de ${p.producto}. ¿Registrar como sobrante de inventario?`)){
+     d.ajustesInventario.push({id:Date.now(),loteId:p.id,producto:p.producto,deltaKg:diff,motivo:'Sobrante de inventario',fecha:today()});save();openReconcile()
+   } return
+ }
+ let missing=Math.abs(diff);
+ $('ft').textContent='Explicar diferencia';
+ $('fb').innerHTML=`<div class="card"><div class="info"><small>${esc(p.producto)}</small><strong class="bad">Faltan ${missing.toFixed(2)} kg</strong></div>
+ <label>¿Qué pasó con esos kilos?</label>
+ <div class="archivechoices">
+ <button onclick="resolveStock('${p.id}',${missing},'merma')"><b>🗑️ Merma</b><small>Producto dañado o perdido.</small></button>
+ <button onclick="resolveStock('${p.id}',${missing},'casa')"><b>🏠 Lo tomé para la casa</b><small>Preguntará si lo pagaste o no.</small></button>
+ <button onclick="resolveStock('${p.id}',${missing},'venta')"><b>🧾 Venta que olvidé registrar</b><small>Preguntará cuánto dinero cobraste.</small></button>
+ <button onclick="resolveStock('${p.id}',${missing},'regalo')"><b>🎁 Regalo</b><small>Sale del inventario sin venta.</small></button>
+ <button onclick="resolveStock('${p.id}',${missing},'otro')"><b>✏️ Otro</b><small>Guardarás una explicación.</small></button>
+ </div></div>`
+}
+function resolveStock(id,kg,type){
+ let p=findLot(id);if(!p)return;
+ if(type==='merma'){d.mermas.push({id:Date.now(),loteId:p.id,producto:p.producto,kg,fecha:today(),nota:'Detectada en arqueo'});save();alert('Merma registrada.');openReconcile();return}
+ if(type==='casa'){
+   if(confirm('¿Pagaste por lo que tomaste para la casa?\n\nAceptar = Sí, al costo.\nCancelar = No pagué.')){
+     let total=kg*p.costkg;d.ventas.push({id:Date.now(),loteId:p.id,producto:p.producto,modo:'consumo_casa_costo',kg,precio:p.costkg,total,fecha:today(),nota:'Consumo de casa pagado al costo'});save();alert(`Registrado al costo: ${money(total)}. No genera utilidad.`)
+   }else{d.ajustesInventario.push({id:Date.now(),loteId:p.id,producto:p.producto,deltaKg:-kg,motivo:'Consumo de casa sin pago',fecha:today()});save()}
+   openReconcile();return
+ }
+ if(type==='venta'){
+   let amt=prompt(`¿Cuánto cobraste por los ${kg.toFixed(2)} kg de ${p.producto}?`);if(amt===null)return;
+   amt=+amt;if(!(amt>0))return alert('Monto no válido.');
+   d.ventas.push({id:Date.now(),loteId:p.id,producto:p.producto,modo:'venta_recuperada',kg,precio:amt/kg,total:amt,fecha:today(),nota:'Venta recuperada desde arqueo'});save();alert('Venta registrada y el inventario quedó corregido.');openReconcile();return
+ }
+ let motivo=type==='regalo'?'Regalo':prompt('Escribe el motivo de la diferencia:');if(type==='otro'&&!motivo)return;
+ d.ajustesInventario.push({id:Date.now(),loteId:p.id,producto:p.producto,deltaKg:-kg,motivo:motivo||'Otro',fecha:today()});save();openReconcile()
+}
+
+function financeTotals(){
+ let ah=(d.distribuciones||[]).filter(x=>x.tipo==='ahorro').reduce((a,x)=>a+(+x.monto||0),0);
+ let ri=(d.distribuciones||[]).filter(x=>x.tipo==='reinversion').reduce((a,x)=>a+(+x.monto||0),0);
+ return {ahorro:ah,reinversion:ri}
+}
+function openFinance(){
+ let m=month(),pf=profitForMonth(m),ft=financeTotals(),a=+d.config.ahorroPct||0,r=+d.config.reinversionPct||0,disp=Math.max(0,100-a-r);
+ $('ft').textContent='💰 Ahorro y reinversión';
+ $('fb').innerHTML=`<div class="card">
+ <div class="info"><small>Utilidad real estimada del mes</small><strong class="${pf.profit>=0?'good':'bad'}">${money(pf.profit)}</strong><span style="font-size:10px;color:var(--m)">Ventas − costo de mercancía vendida − gastos.</span></div>
+ <div class="info"><small>Ahorro acumulado registrado</small><strong>${money(ft.ahorro)}</strong></div>
+ <div class="info"><small>Reinversión acumulada registrada</small><strong>${money(ft.reinversion)}</strong></div>
+ <label>Plan sugerido / modificable</label>
+ <div class="two"><div><label>Ahorro %</label><input id="savePct" type="number" min="0" max="100" value="${a}" oninput="financePreview()"></div><div><label>Reinversión %</label><input id="reinvPct" type="number" min="0" max="100" value="${r}" oninput="financePreview()"></div></div>
+ <div id="financePreview"></div>
+ <button class="primary" onclick="saveFinancePlan()">Guardar porcentajes</button>
+ <label>Cantidad que quieres apartar ahora</label><div class="two"><input id="distAmount" type="number" step=".01" placeholder="Monto"><select id="distType"><option value="ahorro">💰 Ahorro</option><option value="reinversion">📦 Reinversión</option></select></div>
+ <label>¿Lo retirarás físicamente de la caja?</label><select id="distCash"><option value="si">Sí, lo separo de la caja</option><option value="no">No, solo lo registro</option></select>
+ <button class="primary" onclick="addDistribution()">Apartar cantidad</button>
+ </div>`;
+ $('modal').classList.add('on');financePreview()
+}
+function financePreview(){
+ let pf=profitForMonth(month()),a=Math.max(0,+$('savePct')?.value||0),r=Math.max(0,+$('reinvPct')?.value||0),free=Math.max(0,100-a-r),base=Math.max(0,pf.profit);
+ if($('financePreview'))$('financePreview').innerHTML=`<div class="info"><small>Con ${money(base)} de utilidad positiva</small><div class="minirow"><span>💰 Ahorro ${a.toFixed(0)}%</span><b>${money(base*a/100)}</b></div><div class="minirow"><span>📦 Reinversión ${r.toFixed(0)}%</span><b>${money(base*r/100)}</b></div><div class="minirow"><span>💵 Disponible ${free.toFixed(0)}%</span><b>${money(base*free/100)}</b></div>${a+r>100?'<div class="bad" style="font-size:11px;margin-top:8px">Los porcentajes superan 100%.</div>':''}</div>`
+}
+function saveFinancePlan(){let a=+$('savePct').value||0,r=+$('reinvPct').value||0;if(a<0||r<0||a+r>100)return alert('Ahorro + reinversión no pueden superar 100%.');d.config.ahorroPct=a;d.config.reinversionPct=r;save();alert('Plan guardado. Tú sigues decidiendo cuánto apartar realmente.');openFinance()}
+function addDistribution(){let monto=+$('distAmount').value||0,tipo=$('distType').value;if(monto<=0)return alert('Ingresa una cantidad válida.');d.distribuciones.push({id:Date.now(),tipo,monto,fecha:today(),retiradoCaja:$('distCash').value==='si',nota:tipo==='ahorro'?'Ahorro de utilidad':'Reinversión para inventario'});save();openFinance()}
+
+function assistantMessages(){
+ let msgs=[],lots=activeLots(),c=cashRecord(),x=cashExpected(),pf=profitForMonth(month()),ft=financeTotals();
+ let counted=(d.ajustesInventario||[]).some(q=>q.fecha===today())||(d.mermas||[]).some(q=>q.fecha===today()&&q.nota==='Detectada en arqueo');
+ if(lots.length&&!counted)msgs.push('⚖️ ¿Ya revisaste los kilos físicos contra los disponibles en la app? Un arqueo evita que las diferencias se acumulen.');
+ if(c.conteoFisico==null)msgs.push('💵 Aún no has hecho el conteo físico de caja de hoy.');
+ else{let diff=(+c.conteoFisico||0)-x.expected;if(Math.abs(diff)>=.01)msgs.push(`${diff>0?'🟠':'🔴'} Tu caja tiene un ${diff>0?'sobrante':'faltante'} de ${money(Math.abs(diff))}. Conviene revisar movimientos antes de cerrar el día.`)}
+ if(pf.profit>0){
+   let a=+d.config.ahorroPct||0,r=+d.config.reinversionPct||0,free=Math.max(0,100-a-r);
+   msgs.push(`💰 La utilidad real estimada del mes es ${money(pf.profit)}. Tu plan actual sugiere ${a}% ahorro, ${r}% reinversión y ${free}% disponible; tú decides si lo aplicas.`);
+ }
+ if(lots.length){
+   let fastest=lots.map(p=>({...p,ratio:(+p.kg||0)?p.sold/(+p.kg||1):0})).sort((a,b)=>b.ratio-a.ratio)[0];
+   if(fastest&&fastest.sold>0)msgs.push(`📦 ${fastest.producto} lleva ${(fastest.ratio*100).toFixed(0)}% de su lote vendido. Úsalo como dato cuando decidas qué volver a comprar.`);
+ }
+ if(!msgs.length)msgs.push('✅ Por ahora no veo pendientes importantes. Sigue registrando compras, ventas, gastos y mermas para que mis recomendaciones mejoren.');
+ return msgs
+}
+function openAssistant(){
+ let msgs=assistantMessages(),pf=profitForMonth(month()),a=+d.config.ahorroPct||0,r=+d.config.reinversionPct||0,free=Math.max(0,100-a-r),freeMoney=Math.max(0,pf.profit*free/100);
+ $('ft').textContent='🧑‍🌾 Asistente El Ahorro';
+ $('fb').innerHTML=`<div class="card"><div style="display:flex;gap:12px;align-items:center"><img src="assets/logo-circular.png" style="width:64px;height:64px;object-fit:contain;border-radius:50%" alt=""><div><b>Asistente El Ahorro</b><small style="display:block;color:var(--m)">Recomendaciones basadas en tus datos, sin mover nada por ti.</small></div></div>${msgs.map(m=>`<div class="assistant-msg">${esc(m)}</div>`).join('')}<div class="info"><small>Disponible según tu plan actual</small><strong>${money(freeMoney)}</strong><span style="font-size:10px;color:var(--m)">Es una referencia basada en la utilidad estimada y tus porcentajes; no es una orden de compra.</span></div><div class="actiongrid"><button onclick="openReconcile()">⚖️ Revisar kilos</button><button onclick="openCash()">💵 Revisar caja</button><button onclick="openFinance()">💰 Ver plan</button><button onclick="closeForm()">Más tarde</button></div></div>`;
+ $('modal').classList.add('on')
 }
 
 function openCalculator(){drawer();$('ft').textContent='Calculadora';$('fb').innerHTML=`<div class="card"><input id="calcDisplay" class="calcdisplay" value="" placeholder="0" readonly><div class="calckeys"><button onclick="calcClear()">C</button><button onclick="calcBack()">⌫</button><button class="op" onclick="calcAdd('(')">(</button><button class="op" onclick="calcAdd(')')">)</button><button onclick="calcAdd('7')">7</button><button onclick="calcAdd('8')">8</button><button onclick="calcAdd('9')">9</button><button class="op" onclick="calcAdd('/')">÷</button><button onclick="calcAdd('4')">4</button><button onclick="calcAdd('5')">5</button><button onclick="calcAdd('6')">6</button><button class="op" onclick="calcAdd('*')">×</button><button onclick="calcAdd('1')">1</button><button onclick="calcAdd('2')">2</button><button onclick="calcAdd('3')">3</button><button class="op" onclick="calcAdd('-')">−</button><button onclick="calcAdd('0')">0</button><button onclick="calcAdd('.')">.</button><button onclick="calcAdd('%')">%</button><button class="op" onclick="calcAdd('+')">+</button><button class="wide" onclick="calcAdd('00')">00</button><button class="wide eq" onclick="calcResult()">=</button></div></div>`;$('modal').classList.add('on')}
@@ -384,10 +569,10 @@ function calcClear(){let e=$('calcDisplay');if(e)e.value=''}
 function calcBack(){let e=$('calcDisplay');if(e)e.value=e.value.slice(0,-1)}
 function calcResult(){let e=$('calcDisplay');if(!e)return;try{let x=e.value.replace(/(\d+(?:\.\d+)?)%/g,'($1/100)');if(!/^[0-9+\-*/().\s]+$/.test(x))throw 0;let r=Function('"use strict";return ('+x+')')();if(!Number.isFinite(r))throw 0;e.value=String(Math.round((r+Number.EPSILON)*1000000)/1000000)}catch(_){e.value='Error'}}
 
-function backup(){let b=new Blob([JSON.stringify({app:'Frutero',version:'2.6',fechaRespaldo:new Date().toISOString(),datos:d},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='frutero-respaldo-'+today()+'.json';a.click();URL.revokeObjectURL(a.href)}
+function backup(){let b=new Blob([JSON.stringify({app:'El Ahorro',version:'2.8',fechaRespaldo:new Date().toISOString(),datos:d},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='el-ahorro-respaldo-'+today()+'.json';a.click();URL.revokeObjectURL(a.href)}
 function restore(){let f=$('bf').files[0];if(!f)return;let r=new FileReader;r.onload=e=>{try{let o=JSON.parse(e.target.result),x=o.datos||o;if(!x.compras||!x.ventas||!x.mermas||!x.gastos)throw 0;if(confirm('¿Reemplazar los datos actuales?')){d=x;migrate();render();drawer();alert('Respaldo restaurado.')}}catch(_){alert('Archivo de respaldo no válido.')}};r.readAsText(f)}
 
-function render(){home();inventory();movements();reports()}
+function render(){home();inventory();movements();reports();let dot=$('assistantDot');if(dot)dot.style.display=assistantMessages().length?'grid':'none'}
 setTheme(localStorage.getItem(THEME)||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
 $('rm').value=month();$('date').innerHTML=new Date().toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'}).replaceAll(' ','<br>');
 render();
