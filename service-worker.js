@@ -1,4 +1,4 @@
-const CACHE='frutero-v2-6-borrar-offline';
+const CACHE='frutero-v2-7-venta-bolsa';
 const SHELL=['./index.html','./manifest.json','./icons/icon-192.png','./icons/icon-512.png'];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL.map(url=>new Request(url,{cache:'reload'})))));
