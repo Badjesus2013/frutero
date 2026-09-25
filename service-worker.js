@@ -1,5 +1,5 @@
-const CACHE='frutero-v2-7-venta-bolsa';
-const SHELL=['./index.html','./manifest.json','./icons/icon-192.png','./icons/icon-512.png'];
+const CACHE='el-ahorro-v2-8-caja-asistente';
+const SHELL=['./index.html','./manifest.json','./icons/icon-192.png','./icons/icon-512.png','./assets/logo-horizontal.png','./assets/logo-circular.png'];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL.map(url=>new Request(url,{cache:'reload'})))));
   self.skipWaiting();
